@@ -1,29 +1,82 @@
 # Spiceworks
 
-Spiceworks (https://community.spiceworks.com/) is an IT professional community and network providing tools for IT management, including a cloud-based help desk, network monitoring, and IT asset inventory. Founded in 2006 and headquartered in Austin, Texas, Spiceworks serves more than six million IT professionals and 3,000 technology vendors. The platform combines an active peer community with practical IT management tools, offering a free help desk ticketing system, network device inventory, and monitoring capabilities. Spiceworks generates revenue through advertising, making its core tools available to IT teams at no cost.
+Spiceworks (https://community.spiceworks.com/) is an IT professional community and network providing tools for IT management, including a cloud-based help desk, network monitoring, and IT asset inventory. The Spiceworks Cloud Apps API enables developers to build integrated applications within the Spiceworks platform, accessing Help Desk ticketing, device inventory, and user management data through a JavaScript SDK with OAuth-based authentication.
 
-## Spiceworks Cloud Apps API
+## APIs
 
-The Spiceworks Cloud Apps API (https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/) provides a JavaScript SDK for building integrated applications within the Spiceworks platform. Developers can create custom cloud apps that are embedded directly in the Spiceworks interface, with programmatic access to Help Desk ticketing data, network device inventory, and user account information. Apps built on the platform can read and interact with data stored in a user's Spiceworks installation, such as open help desk tickets, network devices, and user details.
+### Spiceworks Cloud Apps API
 
-The JavaScript SDK communicates with Spiceworks services through a messaging layer, and the Help Desk API does not require additional authentication beyond the user's active Spiceworks session. The SDK is available on GitHub and includes example applications demonstrating how to retrieve ticket listings and interact with helpdesk data.
+The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated apps within the Spiceworks platform, with access to Help Desk ticketing data, device inventory, and user information. Apps are embedded within the Spiceworks UI and communicate through a postMessage-based bridge.
 
-### API Resources
-
-- **Developer Documentation:** https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
+- **Documentation:** https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
 - **Authentication:** https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/authentication/
-- **Help Desk API Reference:** https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/reference/helpdesk/
-- **JavaScript SDK:** https://github.com/spiceworks/spiceworks-js-sdk
-- **Example Applications:** https://github.com/spiceworks/spiceworks-js-sdk/tree/master/examples/hello-world
+- **Help Desk Reference:** https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/reference/helpdesk/
+- **SDK:** https://github.com/spiceworks/spiceworks-js-sdk
+- **OpenAPI:** [openapi/spiceworks-cloud-apps-openapi.yml](openapi/spiceworks-cloud-apps-openapi.yml)
+
+## OpenAPI Specifications
+
+| API | File |
+|-----|------|
+| Spiceworks Cloud Apps API | [openapi/spiceworks-cloud-apps-openapi.yml](openapi/spiceworks-cloud-apps-openapi.yml) |
+
+## Spectral Rules
+
+| Ruleset | File |
+|---------|------|
+| Spiceworks Rules | [rules/spiceworks-rules.yml](rules/spiceworks-rules.yml) |
+
+## Capabilities
+
+| Capability | Description | File |
+|------------|-------------|------|
+| IT Management | Unified IT help desk and inventory workflow for technicians | [capabilities/it-management.yaml](capabilities/it-management.yaml) |
+
+### Shared Definitions
+
+| API | File |
+|-----|------|
+| Cloud Apps | [capabilities/shared/cloud-apps.yaml](capabilities/shared/cloud-apps.yaml) |
+
+## JSON Schema
+
+| Schema | File |
+|--------|------|
+| Help Desk Ticket | [json-schema/spiceworks-ticket-schema.json](json-schema/spiceworks-ticket-schema.json) |
+| Inventory Device | [json-schema/spiceworks-device-schema.json](json-schema/spiceworks-device-schema.json) |
+
+## JSON Structure
+
+| Structure | File |
+|-----------|------|
+| Help Desk Ticket | [json-structure/spiceworks-ticket-structure.json](json-structure/spiceworks-ticket-structure.json) |
+
+## JSON-LD
+
+| Context | File |
+|---------|------|
+| Spiceworks Context | [json-ld/spiceworks-context.jsonld](json-ld/spiceworks-context.jsonld) |
+
+## Examples
+
+| Example | File |
+|---------|------|
+| List Tickets | [examples/spiceworks-list-tickets-example.json](examples/spiceworks-list-tickets-example.json) |
+| Get Device | [examples/spiceworks-get-device-example.json](examples/spiceworks-get-device-example.json) |
+
+## Vocabulary
+
+| Vocabulary | File |
+|------------|------|
+| Spiceworks Vocabulary | [vocabulary/spiceworks-vocabulary.yml](vocabulary/spiceworks-vocabulary.yml) |
 
 ## Links
 
-- **Website:** https://community.spiceworks.com/
+- **Community:** https://community.spiceworks.com/
 - **Developer Portal:** https://spiceworks.github.io/developers.spiceworks.com/
-- **Blog:** https://community.spiceworks.com/blog
 - **Help Center:** https://community.spiceworks.com/help
-- **Terms of Service:** https://community.spiceworks.com/legal/terms
-- **Privacy Policy:** https://community.spiceworks.com/legal/privacy
+- **Blog:** https://community.spiceworks.com/blog
 - **GitHub:** https://github.com/spiceworks
 - **LinkedIn:** https://www.linkedin.com/company/spiceworks
-- **Facebook:** https://www.facebook.com/Spiceworks
+- **Terms of Service:** https://community.spiceworks.com/legal/terms
+- **Privacy Policy:** https://community.spiceworks.com/legal/privacy

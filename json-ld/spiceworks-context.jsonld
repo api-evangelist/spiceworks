@@ -1,0 +1,131 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "spiceworks": "https://community.spiceworks.com/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Ticket": "spiceworks:Ticket",
+    "Device": "spiceworks:Device",
+    "User": "schema:Person",
+    "Comment": "schema:Comment",
+
+    "id": "@id",
+    "summary": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "spiceworks:status",
+      "@type": "xsd:string"
+    },
+    "priority": {
+      "@id": "spiceworks:priority",
+      "@type": "xsd:string"
+    },
+    "assignee": {
+      "@id": "schema:agent",
+      "@type": "@id"
+    },
+    "creator": {
+      "@id": "schema:creator",
+      "@type": "@id"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "due_date": {
+      "@id": "schema:scheduledTime",
+      "@type": "xsd:date"
+    },
+    "tags": {
+      "@id": "schema:keywords",
+      "@container": "@list"
+    },
+    "comments": {
+      "@id": "schema:comment",
+      "@container": "@set"
+    },
+    "body": {
+      "@id": "schema:text",
+      "@type": "xsd:string"
+    },
+    "is_public": {
+      "@id": "spiceworks:isPublic",
+      "@type": "xsd:boolean"
+    },
+    "author": {
+      "@id": "schema:author",
+      "@type": "@id"
+    },
+    "first_name": {
+      "@id": "schema:givenName",
+      "@type": "xsd:string"
+    },
+    "last_name": {
+      "@id": "schema:familyName",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "schema:roleName",
+      "@type": "xsd:string"
+    },
+    "department": {
+      "@id": "schema:department",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "spiceworks:deviceType",
+      "@type": "xsd:string"
+    },
+    "manufacturer": {
+      "@id": "schema:manufacturer",
+      "@type": "xsd:string"
+    },
+    "model": {
+      "@id": "schema:model",
+      "@type": "xsd:string"
+    },
+    "serial_number": {
+      "@id": "schema:serialNumber",
+      "@type": "xsd:string"
+    },
+    "ip_address": {
+      "@id": "spiceworks:ipAddress",
+      "@type": "xsd:string"
+    },
+    "mac_address": {
+      "@id": "spiceworks:macAddress",
+      "@type": "xsd:string"
+    },
+    "os_name": {
+      "@id": "spiceworks:operatingSystem",
+      "@type": "xsd:string"
+    },
+    "os_version": {
+      "@id": "spiceworks:osVersion",
+      "@type": "xsd:string"
+    },
+    "last_seen_at": {
+      "@id": "spiceworks:lastSeenAt",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

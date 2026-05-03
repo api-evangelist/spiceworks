@@ -1,0 +1,703 @@
+openapi: 3.1.0
+info:
+  title: Spiceworks Cloud Apps API
+  description: >-
+    The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated
+    applications within the Spiceworks IT management platform. The API exposes Help
+    Desk ticketing data, device inventory, and user information to embedded cloud
+    apps. Applications are embedded within the Spiceworks UI and communicate with
+    the platform through the spiceworks-sdk JavaScript library using a postMessage-based
+    bridge. The API uses OAuth 2.0 authentication and provides access to tickets,
+    comments, devices, and user profiles for IT professionals and app developers.
+  version: '1.0'
+  contact:
+    name: Spiceworks Developer Community
+    url: https://community.spiceworks.com/
+  termsOfService: https://community.spiceworks.com/legal/terms
+externalDocs:
+  description: Spiceworks Cloud Apps Developer Documentation
+  url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
+servers:
+  - url: https://community.spiceworks.com
+    description: Spiceworks Community Platform
+tags:
+  - name: Tickets
+    description: >-
+      Help Desk ticket management operations for creating, reading, updating,
+      and listing support tickets within the Spiceworks IT management platform
+  - name: Comments
+    description: >-
+      Ticket comment operations for adding and retrieving comments on Help Desk
+      support tickets
+  - name: Devices
+    description: >-
+      Device inventory operations for accessing information about managed IT
+      devices including computers, servers, and network equipment
+  - name: Users
+    description: >-
+      User management operations for accessing Spiceworks user and technician
+      profiles
+paths:
+  /api/v1/tickets:
+    get:
+      operationId: listTickets
+      summary: List Help Desk Tickets
+      description: >-
+        Retrieves a paginated list of Help Desk tickets from the Spiceworks
+        platform. Results can be filtered by status, assignee, and other
+        ticket attributes. Returns ticket summaries including ID, summary,
+        status, priority, assignee, and timestamps.
+      tags:
+        - Tickets
+      parameters:
+        - name: status
+          in: query
+          description: Filter tickets by status
+          schema:
+            type: string
+            enum: [open, closed, in_progress]
+        - name: assigned_to
+          in: query
+          description: Filter by assigned technician ID
+          schema:
+            type: integer
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Number of tickets per page
+          schema:
+            type: integer
+            default: 25
+            maximum: 100
+      responses:
+        '200':
+          description: List of tickets retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tickets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Ticket'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+    post:
+      operationId: createTicket
+      summary: Create Help Desk Ticket
+      description: >-
+        Creates a new Help Desk ticket in the Spiceworks platform. The ticket
+        is associated with the authenticated user's Spiceworks account. Required
+        fields include summary and optionally a description, priority level,
+        and assignee.
+      tags:
+        - Tickets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketCreate'
+      responses:
+        '201':
+          description: Ticket created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/Ticket'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v1/tickets/{id}:
+    get:
+      operationId: getTicket
+      summary: Get Help Desk Ticket
+      description: >-
+        Retrieves the full details of a specific Help Desk ticket by its ID,
+        including summary, description, status, priority, assignee, creator,
+        and all associated comments and attachments.
+      tags:
+        - Tickets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the ticket
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ticket details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/TicketDetail'
+        '404':
+          description: Ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateTicket
+      summary: Update Help Desk Ticket
+      description: >-
+        Updates an existing Help Desk ticket. Allows changing status, priority,
+        assignee, summary, description, and other ticket attributes. Only
+        fields included in the request body are updated.
+      tags:
+        - Tickets
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the ticket
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketUpdate'
+      responses:
+        '200':
+          description: Ticket updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/Ticket'
+        '404':
+          description: Ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v1/tickets/{ticket_id}/comments:
+    get:
+      operationId: listTicketComments
+      summary: List Ticket Comments
+      description: >-
+        Retrieves all comments associated with a specific Help Desk ticket.
+        Comments include the body text, the author, creation timestamp, and
+        whether the comment is public or internal (technician-only).
+      tags:
+        - Comments
+      parameters:
+        - name: ticket_id
+          in: path
+          required: true
+          description: The unique identifier of the ticket
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Comments retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Comment'
+        '404':
+          description: Ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createTicketComment
+      summary: Add Ticket Comment
+      description: >-
+        Adds a new comment to an existing Help Desk ticket. Comments can be
+        public (visible to the ticket requester) or internal (visible only
+        to technicians). Supports plain text and basic HTML formatting.
+      tags:
+        - Comments
+      parameters:
+        - name: ticket_id
+          in: path
+          required: true
+          description: The unique identifier of the ticket
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentCreate'
+      responses:
+        '201':
+          description: Comment added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comment:
+                    $ref: '#/components/schemas/Comment'
+        '404':
+          description: Ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v1/devices:
+    get:
+      operationId: listDevices
+      summary: List Inventory Devices
+      description: >-
+        Retrieves a paginated list of managed IT devices from the Spiceworks
+        inventory. Devices include workstations, servers, network equipment,
+        and other managed assets. Results can be filtered by device type,
+        operating system, and other attributes.
+      tags:
+        - Devices
+      parameters:
+        - name: type
+          in: query
+          description: Filter by device type
+          schema:
+            type: string
+            enum: [workstation, server, network, printer, mobile]
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Number of devices per page
+          schema:
+            type: integer
+            default: 25
+            maximum: 100
+      responses:
+        '200':
+          description: List of devices retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  devices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Device'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+  /api/v1/devices/{id}:
+    get:
+      operationId: getDevice
+      summary: Get Inventory Device
+      description: >-
+        Retrieves the full details of a specific managed device by its ID,
+        including hardware specifications, software inventory, operating system,
+        network configuration, and warranty information.
+      tags:
+        - Devices
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the device
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Device details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  device:
+                    $ref: '#/components/schemas/DeviceDetail'
+        '404':
+          description: Device not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v1/users:
+    get:
+      operationId: listUsers
+      summary: List Platform Users
+      description: >-
+        Retrieves a list of Spiceworks users and technicians associated with
+        the account. Includes basic profile information such as name, email,
+        role, and department.
+      tags:
+        - Users
+      parameters:
+        - name: role
+          in: query
+          description: Filter by user role
+          schema:
+            type: string
+            enum: [admin, technician, user]
+        - name: page
+          in: query
+          description: Page number for pagination
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: List of users retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+  /api/v1/users/{id}:
+    get:
+      operationId: getUser
+      summary: Get Platform User
+      description: >-
+        Retrieves profile details for a specific Spiceworks user including
+        name, email, role, department, phone, and avatar information.
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the user
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: >-
+        OAuth 2.0 authentication via the Spiceworks Cloud Apps platform.
+        Applications receive an implicit grant token through the JS SDK
+        postMessage bridge when running inside the Spiceworks UI.
+      flows:
+        implicit:
+          authorizationUrl: https://community.spiceworks.com/oauth/authorize
+          scopes:
+            helpdesk: Access Help Desk tickets and comments
+            inventory: Access device inventory data
+            users: Access user profile data
+  schemas:
+    Ticket:
+      type: object
+      description: A Spiceworks Help Desk support ticket
+      properties:
+        id:
+          type: integer
+          description: Unique ticket identifier
+        summary:
+          type: string
+          description: Brief description of the ticket issue
+        status:
+          type: string
+          description: Current ticket status
+          enum: [open, in_progress, closed]
+        priority:
+          type: string
+          description: Ticket priority level
+          enum: [low, medium, high, urgent]
+        assignee:
+          $ref: '#/components/schemas/UserRef'
+        creator:
+          $ref: '#/components/schemas/UserRef'
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the ticket was created
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the ticket was last updated
+        due_date:
+          type: string
+          format: date
+          description: Optional due date for the ticket
+    TicketDetail:
+      allOf:
+        - $ref: '#/components/schemas/Ticket'
+        - type: object
+          properties:
+            description:
+              type: string
+              description: Full description of the ticket issue
+            comments:
+              type: array
+              items:
+                $ref: '#/components/schemas/Comment'
+            tags:
+              type: array
+              items:
+                type: string
+              description: Tags associated with the ticket
+    TicketCreate:
+      type: object
+      required:
+        - summary
+      properties:
+        summary:
+          type: string
+          description: Brief description of the issue
+          maxLength: 255
+        description:
+          type: string
+          description: Detailed description of the issue
+        priority:
+          type: string
+          enum: [low, medium, high, urgent]
+          default: medium
+        assignee_id:
+          type: integer
+          description: ID of the technician to assign the ticket to
+        due_date:
+          type: string
+          format: date
+          description: Optional due date for resolution
+    TicketUpdate:
+      type: object
+      properties:
+        summary:
+          type: string
+          description: Updated brief description
+          maxLength: 255
+        description:
+          type: string
+          description: Updated detailed description
+        status:
+          type: string
+          enum: [open, in_progress, closed]
+        priority:
+          type: string
+          enum: [low, medium, high, urgent]
+        assignee_id:
+          type: integer
+          description: ID of the technician to assign the ticket to
+    Comment:
+      type: object
+      description: A comment on a Help Desk ticket
+      properties:
+        id:
+          type: integer
+          description: Unique comment identifier
+        body:
+          type: string
+          description: The comment text content
+        is_public:
+          type: boolean
+          description: >-
+            Whether the comment is visible to the ticket requester (true)
+            or internal to technicians only (false)
+        author:
+          $ref: '#/components/schemas/UserRef'
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the comment was created
+    CommentCreate:
+      type: object
+      required:
+        - body
+      properties:
+        body:
+          type: string
+          description: The comment text content
+        is_public:
+          type: boolean
+          description: Whether the comment is visible to the requester
+          default: true
+    Device:
+      type: object
+      description: A managed IT device in the Spiceworks inventory
+      properties:
+        id:
+          type: integer
+          description: Unique device identifier
+        name:
+          type: string
+          description: Device hostname or display name
+        type:
+          type: string
+          description: Device type classification
+          enum: [workstation, server, network, printer, mobile, unknown]
+        manufacturer:
+          type: string
+          description: Device manufacturer name
+        model:
+          type: string
+          description: Device model name
+        serial_number:
+          type: string
+          description: Device serial number
+        ip_address:
+          type: string
+          description: Primary IP address of the device
+        mac_address:
+          type: string
+          description: Primary MAC address of the device
+        os_name:
+          type: string
+          description: Operating system name
+        os_version:
+          type: string
+          description: Operating system version
+        last_seen_at:
+          type: string
+          format: date-time
+          description: Timestamp when the device was last detected on the network
+    DeviceDetail:
+      allOf:
+        - $ref: '#/components/schemas/Device'
+        - type: object
+          properties:
+            cpu:
+              type: string
+              description: CPU model and speed
+            ram_mb:
+              type: integer
+              description: Total RAM in megabytes
+            disk_gb:
+              type: number
+              description: Total disk capacity in gigabytes
+            software:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  version:
+                    type: string
+              description: List of installed software applications
+            warranty_expiry:
+              type: string
+              format: date
+              description: Device warranty expiration date
+    User:
+      type: object
+      description: A Spiceworks platform user or technician
+      properties:
+        id:
+          type: integer
+          description: Unique user identifier
+        first_name:
+          type: string
+          description: User first name
+        last_name:
+          type: string
+          description: User last name
+        email:
+          type: string
+          format: email
+          description: User email address
+        role:
+          type: string
+          description: User role in the platform
+          enum: [admin, technician, user]
+        department:
+          type: string
+          description: User department
+        phone:
+          type: string
+          description: User phone number
+        avatar_url:
+          type: string
+          format: uri
+          description: URL to the user avatar image
+    UserRef:
+      type: object
+      description: A brief reference to a Spiceworks user
+      properties:
+        id:
+          type: integer
+          description: Unique user identifier
+        first_name:
+          type: string
+          description: User first name
+        last_name:
+          type: string
+          description: User last name
+        email:
+          type: string
+          format: email
+          description: User email address
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses
+      properties:
+        current_page:
+          type: integer
+          description: Current page number
+        total_pages:
+          type: integer
+          description: Total number of pages
+        total_count:
+          type: integer
+          description: Total number of items
+        per_page:
+          type: integer
+          description: Items per page
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+security:
+  - oauth2:
+      - helpdesk
+      - inventory
+      - users

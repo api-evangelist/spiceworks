@@ -1,0 +1,56 @@
+{
+  "title": "Spiceworks Help Desk Ticket Structure",
+  "description": "JSON Structure document describing the Spiceworks Help Desk Ticket data model and its relationships to users and comments.",
+  "type": "object",
+  "fields": [
+    { "name": "id", "type": "integer", "required": true, "description": "Unique ticket identifier" },
+    { "name": "summary", "type": "string", "required": true, "description": "Brief issue description (max 255 chars)" },
+    { "name": "description", "type": "string", "required": false, "description": "Detailed issue description" },
+    { "name": "status", "type": "enum[open,in_progress,closed]", "required": true, "description": "Current ticket status" },
+    { "name": "priority", "type": "enum[low,medium,high,urgent]", "required": false, "description": "Ticket priority level" },
+    { "name": "due_date", "type": "date", "required": false, "description": "Resolution due date" },
+    { "name": "created_at", "type": "datetime", "required": false, "description": "Creation timestamp" },
+    { "name": "updated_at", "type": "datetime", "required": false, "description": "Last update timestamp" },
+    { "name": "tags", "type": "array[string]", "required": false, "description": "Associated tags" }
+  ],
+  "relationships": [
+    {
+      "name": "assignee",
+      "type": "UserRef",
+      "cardinality": "many-to-one",
+      "description": "The technician assigned to this ticket"
+    },
+    {
+      "name": "creator",
+      "type": "UserRef",
+      "cardinality": "many-to-one",
+      "description": "The user who created this ticket"
+    },
+    {
+      "name": "comments",
+      "type": "Comment",
+      "cardinality": "one-to-many",
+      "description": "Comments posted on this ticket"
+    }
+  ],
+  "relatedTypes": [
+    {
+      "name": "UserRef",
+      "fields": [
+        { "name": "id", "type": "integer", "description": "User ID" },
+        { "name": "first_name", "type": "string", "description": "First name" },
+        { "name": "last_name", "type": "string", "description": "Last name" },
+        { "name": "email", "type": "email", "description": "Email address" }
+      ]
+    },
+    {
+      "name": "Comment",
+      "fields": [
+        { "name": "id", "type": "integer", "description": "Comment ID" },
+        { "name": "body", "type": "string", "description": "Comment text" },
+        { "name": "is_public", "type": "boolean", "description": "Visible to requester" },
+        { "name": "created_at", "type": "datetime", "description": "Creation timestamp" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/spiceworks/json-schema/spiceworks-ticket-schema.json",
+  "title": "Spiceworks Help Desk Ticket",
+  "description": "JSON Schema for a Spiceworks Help Desk support ticket, including status, priority, assignee, and comment associations.",
+  "type": "object",
+  "required": ["id", "summary", "status"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique ticket identifier within Spiceworks"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Brief description of the issue",
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the issue"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current ticket status",
+      "enum": ["open", "in_progress", "closed"]
+    },
+    "priority": {
+      "type": "string",
+      "description": "Ticket priority level",
+      "enum": ["low", "medium", "high", "urgent"],
+      "default": "medium"
+    },
+    "assignee": {
+      "$ref": "#/$defs/UserRef"
+    },
+    "creator": {
+      "$ref": "#/$defs/UserRef"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the ticket was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the ticket was last updated"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Optional due date for ticket resolution"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the ticket"
+    },
+    "comments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Comment"
+      },
+      "description": "Comments on this ticket"
+    }
+  },
+  "$defs": {
+    "UserRef": {
+      "type": "object",
+      "description": "Brief reference to a Spiceworks user",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "User ID"
+        },
+        "first_name": {
+          "type": "string",
+          "description": "User first name"
+        },
+        "last_name": {
+          "type": "string",
+          "description": "User last name"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "User email address"
+        }
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "description": "A comment on a Help Desk ticket",
+      "required": ["id", "body"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique comment identifier"
+        },
+        "body": {
+          "type": "string",
+          "description": "Comment text content"
+        },
+        "is_public": {
+          "type": "boolean",
+          "description": "Whether visible to the ticket requester",
+          "default": true
+        },
+        "author": {
+          "$ref": "#/$defs/UserRef"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when comment was created"
+        }
+      }
+    }
+  }
+}

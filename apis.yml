@@ -4,6 +4,7 @@ apis:
   - aid: spiceworks:spiceworks-cloud-apps-api
     name: Spiceworks Cloud Apps API
     tags:
+      - Cloud Apps
       - Community
       - Help Desk
       - IT Management
@@ -20,7 +21,16 @@ apis:
         type: SDKs
       - url: https://github.com/spiceworks/spiceworks-js-sdk/tree/master/examples/hello-world
         type: Examples
-    description: The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated apps within the Spiceworks platform, with access to Help Desk ticketing data, device inventory, and user information. It allows developers to create custom apps embedded in the Spiceworks interface with access to IT management data.
+      - url: openapi/spiceworks-cloud-apps-openapi.yml
+        type: OpenAPI
+      - url: rules/spiceworks-rules.yml
+        type: SpectralRules
+      - url: capabilities/shared/cloud-apps.yaml
+        type: NaftikoCapabilities
+    description: The Spiceworks Cloud Apps API provides a JavaScript SDK for building
+      integrated apps within the Spiceworks platform, with access to Help Desk ticketing
+      data, device inventory, and user information. It allows developers to create custom
+      apps embedded in the Spiceworks interface with access to IT management data.
 name: Spiceworks
 tags:
   - Community
@@ -29,6 +39,9 @@ tags:
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
+created: '2024-01-01'
+modified: '2026-05-02'
+specificationVersion: '0.19'
 common:
   - url: https://community.spiceworks.com/
     name: Spiceworks Community Website
@@ -75,6 +88,24 @@ common:
   - url: https://github.com/spiceworks
     name: Spiceworks on GitHub
     type: GitHub
+  - url: openapi/spiceworks-cloud-apps-openapi.yml
+    name: Spiceworks Cloud Apps OpenAPI
+    type: OpenAPI
+  - url: rules/spiceworks-rules.yml
+    name: Spiceworks Spectral Rules
+    type: SpectralRules
+  - url: vocabulary/spiceworks-vocabulary.yml
+    name: Spiceworks Vocabulary
+    type: Vocabulary
+  - url: capabilities/it-management.yaml
+    name: Spiceworks IT Management Capabilities
+    type: NaftikoCapabilities
 description: >-
   Spiceworks is an online community and marketplace where IT professionals can find
   advice, manage their networks, and discover and purchase IT products and services.
+  The Spiceworks Cloud Apps API enables developers to build integrated applications
+  within the Spiceworks platform, accessing Help Desk ticketing, device inventory,
+  and user management data through a JavaScript SDK with OAuth-based authentication.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

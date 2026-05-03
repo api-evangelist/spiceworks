@@ -1,0 +1,102 @@
+vocabulary:
+  name: Spiceworks Vocabulary
+  description: >-
+    Domain vocabulary for the Spiceworks IT management platform covering Help Desk
+    ticketing, device inventory, user management, and IT operations terminology.
+  version: "1.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+  tags:
+    - Help Desk
+    - IT Management
+    - Ticketing
+    - Inventory
+
+terms:
+  - term: Ticket
+    definition: >-
+      A Help Desk support request submitted by a user or technician to report an
+      IT issue, request a service, or track a task. Tickets have a lifecycle from
+      open through in-progress to closed.
+    synonyms: [Support Request, Issue, Case]
+    related: [Comment, Technician, Priority]
+
+  - term: Comment
+    definition: >-
+      A note or update posted on a Help Desk ticket. Comments can be public
+      (visible to the ticket requester) or internal (visible only to technicians).
+    synonyms: [Note, Update, Reply]
+    related: [Ticket, Technician]
+
+  - term: Priority
+    definition: >-
+      The urgency level assigned to a Help Desk ticket indicating how quickly it
+      should be resolved. Levels are low, medium, high, and urgent.
+    values: [low, medium, high, urgent]
+    related: [Ticket, SLA]
+
+  - term: Status
+    definition: >-
+      The current state of a Help Desk ticket in its lifecycle.
+      Open indicates a new or pending ticket, in_progress indicates active work,
+      and closed indicates resolution.
+    values: [open, in_progress, closed]
+    related: [Ticket, Workflow]
+
+  - term: Technician
+    definition: >-
+      A Spiceworks user with elevated permissions who can be assigned tickets,
+      manage inventory, and perform IT administration tasks.
+    synonyms: [IT Professional, Support Agent, Helpdesk Staff]
+    related: [Ticket, Assignment]
+
+  - term: Device
+    definition: >-
+      A managed IT asset in the Spiceworks inventory. Devices include workstations,
+      servers, network equipment, printers, and mobile devices. Spiceworks discovers
+      and tracks devices on the network.
+    synonyms: [Asset, Endpoint, Machine, Computer]
+    related: [Inventory, Serial Number, Warranty]
+
+  - term: Inventory
+    definition: >-
+      The Spiceworks database of all managed IT assets on the network including
+      hardware specifications, installed software, and network configuration.
+    synonyms: [Asset Register, CMDB]
+    related: [Device, Software, Network]
+
+  - term: Cloud App
+    definition: >-
+      A custom application built using the Spiceworks Cloud Apps SDK that runs
+      embedded within the Spiceworks UI and has access to platform data via
+      the postMessage JavaScript bridge.
+    synonyms: [App, Integration, Plugin]
+    related: [SDK, JavaScript, OAuth]
+
+  - term: Community
+    definition: >-
+      The Spiceworks online community forum where IT professionals ask questions,
+      share knowledge, and discuss products. Community membership is required to
+      use the Spiceworks platform.
+    related: [Forum, IT Professional]
+
+  - term: Help Desk
+    definition: >-
+      The Spiceworks module providing ticket-based IT support management including
+      request tracking, assignment, communication, and reporting.
+    synonyms: [Service Desk, IT Support]
+    related: [Ticket, SLA, Technician]
+
+  - term: OAuth
+    definition: >-
+      The authentication protocol used by Spiceworks Cloud Apps to grant
+      applications access to platform data on behalf of logged-in users.
+      Cloud apps receive an implicit grant token through the JS SDK.
+    related: [Cloud App, Authentication, Token]
+
+  - term: SLA
+    definition: >-
+      Service Level Agreement — the defined response and resolution time targets
+      for Help Desk tickets based on priority level and category.
+    synonyms: [Service Level, Response Time]
+    related: [Priority, Ticket, Due Date]

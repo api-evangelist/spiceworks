@@ -1,0 +1,68 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://community.spiceworks.com/api/v1/tickets?status=open&page=1",
+    "headers": {
+      "Authorization": "Bearer {oauth_token}",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "tickets": [
+        {
+          "id": 1042,
+          "summary": "Laptop screen flickering on startup",
+          "status": "open",
+          "priority": "high",
+          "assignee": {
+            "id": 7,
+            "first_name": "Sarah",
+            "last_name": "Chen",
+            "email": "sarah.chen@company.com"
+          },
+          "creator": {
+            "id": 23,
+            "first_name": "Mike",
+            "last_name": "Johnson",
+            "email": "mike.johnson@company.com"
+          },
+          "created_at": "2026-04-28T09:15:00Z",
+          "updated_at": "2026-04-28T14:30:00Z",
+          "due_date": "2026-05-02"
+        },
+        {
+          "id": 1041,
+          "summary": "Unable to connect to VPN from home office",
+          "status": "in_progress",
+          "priority": "urgent",
+          "assignee": {
+            "id": 5,
+            "first_name": "David",
+            "last_name": "Martinez",
+            "email": "david.martinez@company.com"
+          },
+          "creator": {
+            "id": 31,
+            "first_name": "Lisa",
+            "last_name": "Thompson",
+            "email": "lisa.thompson@company.com"
+          },
+          "created_at": "2026-04-27T16:45:00Z",
+          "updated_at": "2026-04-28T10:00:00Z",
+          "due_date": null
+        }
+      ],
+      "meta": {
+        "current_page": 1,
+        "total_pages": 5,
+        "total_count": 47,
+        "per_page": 25
+      }
+    }
+  }
+}
