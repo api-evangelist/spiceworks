@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Spiceworks Cloud Apps API — Comments
+  description: 'Spiceworks Cloud Apps API — Comments. 2 operations. Lead operation: List Ticket Comments. Self-contained Naftiko
+    capability covering one Spiceworks business surface.'
+  tags:
+  - Spiceworks
+  - Comments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPICEWORKS_API_KEY: SPICEWORKS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloud-apps-comments
+    baseUri: https://community.spiceworks.com
+    description: Spiceworks Cloud Apps API — Comments business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v1-tickets-ticket_id-comments
+      path: /api/v1/tickets/{ticket_id}/comments
+      operations:
+      - name: listticketcomments
+        method: GET
+        description: List Ticket Comments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ticket_id
+          in: path
+          type: integer
+          description: The unique identifier of the ticket
+          required: true
+      - name: createticketcomment
+        method: POST
+        description: Add Ticket Comment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ticket_id
+          in: path
+          type: integer
+          description: The unique identifier of the ticket
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SPICEWORKS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloud-apps-comments-rest
+    port: 8080
+    description: REST adapter for Spiceworks Cloud Apps API — Comments. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v1/tickets/{ticket-id}/comments
+      name: api-v1-tickets-ticket-id-comments
+      description: REST surface for api-v1-tickets-ticket_id-comments.
+      operations:
+      - method: GET
+        name: listticketcomments
+        description: List Ticket Comments
+        call: cloud-apps-comments.listticketcomments
+        with:
+          ticket_id: rest.ticket_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createticketcomment
+        description: Add Ticket Comment
+        call: cloud-apps-comments.createticketcomment
+        with:
+          ticket_id: rest.ticket_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloud-apps-comments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Spiceworks Cloud Apps API — Comments. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-ticket-comments
+      description: List Ticket Comments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloud-apps-comments.listticketcomments
+      with:
+        ticket_id: tools.ticket_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-ticket-comment
+      description: Add Ticket Comment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: cloud-apps-comments.createticketcomment
+      with:
+        ticket_id: tools.ticket_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
