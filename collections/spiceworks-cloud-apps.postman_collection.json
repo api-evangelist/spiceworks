@@ -1,0 +1,1568 @@
+{
+  "item": [
+    {
+      "id": "ae2f784c-9856-4181-b661-b59711be3868",
+      "name": "Tickets",
+      "description": {
+        "content": "Help Desk ticket management operations for creating, reading, updating, and listing support tickets within the Spiceworks IT management platform",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f79f9d03-03fe-4a16-aab7-8d91dd09c033",
+          "name": "List Help Desk Tickets",
+          "request": {
+            "name": "List Help Desk Tickets",
+            "description": {
+              "content": "Retrieves a paginated list of Help Desk tickets from the Spiceworks platform. Results can be filtered by status, assignee, and other ticket attributes. Returns ticket summaries including ID, summary, status, priority, assignee, and timestamps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tickets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter tickets by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "assigned_to",
+                  "value": "<integer>",
+                  "description": "Filter by assigned technician ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25",
+                  "description": "Number of tickets per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1354c66e-1a8f-4f18-912c-7464cad0d596",
+              "name": "List of tickets retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assigned_to",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tickets\": [\n    {\n      \"id\": 1117,\n      \"summary\": \"string\",\n      \"status\": \"open\",\n      \"priority\": \"low\",\n      \"assignee\": {\n        \"id\": 4382,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"BOGqEsjm@uGvJzlll.qz\"\n      },\n      \"creator\": {\n        \"id\": 448,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"kpxT@nJxFCBABxHFbOAhSCgdgIpvRrvExYPAIM.gyzd\"\n      },\n      \"created_at\": \"2018-11-12T05:20:39.553Z\",\n      \"updated_at\": \"1980-09-11T19:58:46.972Z\",\n      \"due_date\": \"1965-02-25\"\n    },\n    {\n      \"id\": 3028,\n      \"summary\": \"string\",\n      \"status\": \"in_progress\",\n      \"priority\": \"urgent\",\n      \"assignee\": {\n        \"id\": 1681,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"RemAys8s4l41NS@pUSrCl.unvf\"\n      },\n      \"creator\": {\n        \"id\": 8961,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"oHYf4Kc@AviBAWVzhSEDalXQfBwtPIKGYeI.kfg\"\n      },\n      \"created_at\": \"1963-08-14T19:49:40.610Z\",\n      \"updated_at\": \"1973-08-27T07:48:23.156Z\",\n      \"due_date\": \"1974-03-27\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": 1425,\n    \"total_pages\": 2609,\n    \"total_count\": 7239,\n    \"per_page\": 7401\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf910dfd-51d2-48ec-b4e7-214adef1b1ad",
+          "name": "Create Help Desk Ticket",
+          "request": {
+            "name": "Create Help Desk Ticket",
+            "description": {
+              "content": "Creates a new Help Desk ticket in the Spiceworks platform. The ticket is associated with the authenticated user's Spiceworks account. Required fields include summary and optionally a description, priority level, and assignee.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tickets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"medium\",\n  \"assignee_id\": \"<integer>\",\n  \"due_date\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff3ccc05-0592-43fb-8ab4-f965788d0b2f",
+              "name": "Ticket created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"medium\",\n  \"assignee_id\": \"<integer>\",\n  \"due_date\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ticket\": {\n    \"id\": 2857,\n    \"summary\": \"string\",\n    \"status\": \"in_progress\",\n    \"priority\": \"low\",\n    \"assignee\": {\n      \"id\": 267,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"bGg4VPVT@IcDuDUXApAjViIfIaukYKXxf.lja\"\n    },\n    \"creator\": {\n      \"id\": 9479,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"8mJr1G2SH3bD@SIvBJYSjTTlzMbKMwbiH.zcyn\"\n    },\n    \"created_at\": \"1974-05-14T06:20:28.018Z\",\n    \"updated_at\": \"2001-12-08T09:24:27.369Z\",\n    \"due_date\": \"1976-04-19\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbc9fc92-99a1-4c3b-a3fc-13f581b3a194",
+              "name": "Validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"medium\",\n  \"assignee_id\": \"<integer>\",\n  \"due_date\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b8cbb9c-4dce-4656-a58f-34a27dd668e0",
+          "name": "Get Help Desk Ticket",
+          "request": {
+            "name": "Get Help Desk Ticket",
+            "description": {
+              "content": "Retrieves the full details of a specific Help Desk ticket by its ID, including summary, description, status, priority, assignee, creator, and all associated comments and attachments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tickets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the ticket"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55ce0dce-6b46-42f0-afc3-8b9b1f98d17c",
+              "name": "Ticket details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ticket\": {\n    \"id\": 6535,\n    \"summary\": \"string\",\n    \"status\": \"open\",\n    \"priority\": \"high\",\n    \"assignee\": {\n      \"id\": 2760,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"HAacVfCdoFP8@XJccg.ktf\"\n    },\n    \"creator\": {\n      \"id\": 853,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"v7-2kZqz@DdPnAeaVyXRVughvpG.uhvl\"\n    },\n    \"created_at\": \"1966-03-29T09:56:44.234Z\",\n    \"updated_at\": \"1969-05-06T21:27:18.158Z\",\n    \"due_date\": \"1980-02-29\",\n    \"description\": \"string\",\n    \"comments\": [\n      {\n        \"id\": 255,\n        \"body\": \"string\",\n        \"is_public\": false,\n        \"author\": {\n          \"id\": 3192,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"email\": \"2bVrjEJ-iyy3@CIpTMCtjRlNCeJYdKAkxoUgJhOtOiCDpe.deia\"\n        },\n        \"created_at\": \"2003-06-18T07:00:21.388Z\"\n      },\n      {\n        \"id\": 7163,\n        \"body\": \"string\",\n        \"is_public\": false,\n        \"author\": {\n          \"id\": 1032,\n          \"first_name\": \"string\",\n          \"last_name\": \"string\",\n          \"email\": \"8ionYck@JzIoIexchUEBpQsoqjwHCtRaUozf.gwu\"\n        },\n        \"created_at\": \"1982-10-17T06:26:11.862Z\"\n      }\n    ],\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bc779f0-946f-4568-8613-c98785473902",
+              "name": "Ticket not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f9ec218-9e15-4d75-a7f2-2d9f69c2d235",
+          "name": "Update Help Desk Ticket",
+          "request": {
+            "name": "Update Help Desk Ticket",
+            "description": {
+              "content": "Updates an existing Help Desk ticket. Allows changing status, priority, assignee, summary, description, and other ticket attributes. Only fields included in the request body are updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tickets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the ticket"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"assignee_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "43c184f2-521d-40c6-99e4-3e693f19cf63",
+              "name": "Ticket updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"assignee_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ticket\": {\n    \"id\": 2857,\n    \"summary\": \"string\",\n    \"status\": \"in_progress\",\n    \"priority\": \"low\",\n    \"assignee\": {\n      \"id\": 267,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"bGg4VPVT@IcDuDUXApAjViIfIaukYKXxf.lja\"\n    },\n    \"creator\": {\n      \"id\": 9479,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"8mJr1G2SH3bD@SIvBJYSjTTlzMbKMwbiH.zcyn\"\n    },\n    \"created_at\": \"1974-05-14T06:20:28.018Z\",\n    \"updated_at\": \"2001-12-08T09:24:27.369Z\",\n    \"due_date\": \"1976-04-19\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e6dcfef-9509-4ac7-a238-8b31d664f584",
+              "name": "Ticket not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"<string>\",\n  \"priority\": \"<string>\",\n  \"assignee_id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ecedb5ea-0c2d-4e9e-8483-0198d5acd10a",
+      "name": "Comments",
+      "description": {
+        "content": "Ticket comment operations for adding and retrieving comments on Help Desk support tickets",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3721c9c3-13c2-44ec-bb8c-0ff0de774b97",
+          "name": "List Ticket Comments",
+          "request": {
+            "name": "List Ticket Comments",
+            "description": {
+              "content": "Retrieves all comments associated with a specific Help Desk ticket. Comments include the body text, the author, creation timestamp, and whether the comment is public or internal (technician-only).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tickets",
+                ":ticket_id",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) The unique identifier of the ticket"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7080ebde-7ef1-4d28-95a1-06ec489b4234",
+              "name": "Comments retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":ticket_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comments\": [\n    {\n      \"id\": 9887,\n      \"body\": \"string\",\n      \"is_public\": true,\n      \"author\": {\n        \"id\": 7343,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"gZ5R1ksZ4@TXJSRvMRNQexllkxfHCQJeiqwEMmdpqn.lq\"\n      },\n      \"created_at\": \"1951-04-27T18:12:47.705Z\"\n    },\n    {\n      \"id\": 2352,\n      \"body\": \"string\",\n      \"is_public\": false,\n      \"author\": {\n        \"id\": 927,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"8X3WxryJ0imMp@mxKv.man\"\n      },\n      \"created_at\": \"2009-01-09T20:06:28.010Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ceac1df2-408c-4d10-95d1-bff76dfde213",
+              "name": "Ticket not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":ticket_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47d1c2e0-6e04-4873-9e0a-8145e2da556a",
+          "name": "Add Ticket Comment",
+          "request": {
+            "name": "Add Ticket Comment",
+            "description": {
+              "content": "Adds a new comment to an existing Help Desk ticket. Comments can be public (visible to the ticket requester) or internal (visible only to technicians). Supports plain text and basic HTML formatting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tickets",
+                ":ticket_id",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) The unique identifier of the ticket"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<string>\",\n  \"is_public\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c8c671b-8177-44ca-99ea-106c09408761",
+              "name": "Comment added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":ticket_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"is_public\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comment\": {\n    \"id\": 9312,\n    \"body\": \"string\",\n    \"is_public\": false,\n    \"author\": {\n      \"id\": 4348,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"4cEhH1h60jPO@loxoDoVLrMuHRHeCjvuzKNZpPTIl.pxm\"\n    },\n    \"created_at\": \"2017-09-17T12:50:33.800Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a7cd2bf-c202-4222-bc62-b51b3460a178",
+              "name": "Ticket not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":ticket_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"is_public\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7dca05e7-c468-4b81-a29b-23b920680df0",
+      "name": "Devices",
+      "description": {
+        "content": "Device inventory operations for accessing information about managed IT devices including computers, servers, and network equipment",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1fcef4bf-27aa-4394-b083-29093e87abb4",
+          "name": "List Inventory Devices",
+          "request": {
+            "name": "List Inventory Devices",
+            "description": {
+              "content": "Retrieves a paginated list of managed IT devices from the Spiceworks inventory. Devices include workstations, servers, network equipment, and other managed assets. Results can be filtered by device type, operating system, and other attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "devices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by device type"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "25",
+                  "description": "Number of devices per page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f57b5305-8649-4ef0-9d6b-1e234af2c54d",
+              "name": "List of devices retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "devices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "25"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"devices\": [\n    {\n      \"id\": 1867,\n      \"name\": \"string\",\n      \"type\": \"mobile\",\n      \"manufacturer\": \"string\",\n      \"model\": \"string\",\n      \"serial_number\": \"string\",\n      \"ip_address\": \"string\",\n      \"mac_address\": \"string\",\n      \"os_name\": \"string\",\n      \"os_version\": \"string\",\n      \"last_seen_at\": \"2002-06-06T11:14:35.509Z\"\n    },\n    {\n      \"id\": 6495,\n      \"name\": \"string\",\n      \"type\": \"mobile\",\n      \"manufacturer\": \"string\",\n      \"model\": \"string\",\n      \"serial_number\": \"string\",\n      \"ip_address\": \"string\",\n      \"mac_address\": \"string\",\n      \"os_name\": \"string\",\n      \"os_version\": \"string\",\n      \"last_seen_at\": \"1990-02-11T16:22:23.301Z\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": 6186,\n    \"total_pages\": 6807,\n    \"total_count\": 1304,\n    \"per_page\": 4604\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "519a5c56-2cc2-4e8c-9d16-10f760bb96ac",
+          "name": "Get Inventory Device",
+          "request": {
+            "name": "Get Inventory Device",
+            "description": {
+              "content": "Retrieves the full details of a specific managed device by its ID, including hardware specifications, software inventory, operating system, network configuration, and warranty information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "devices",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the device"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28d23016-d084-445d-91f2-d3ad59489138",
+              "name": "Device details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "devices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the device"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"device\": {\n    \"id\": 992,\n    \"name\": \"string\",\n    \"type\": \"unknown\",\n    \"manufacturer\": \"string\",\n    \"model\": \"string\",\n    \"serial_number\": \"string\",\n    \"ip_address\": \"string\",\n    \"mac_address\": \"string\",\n    \"os_name\": \"string\",\n    \"os_version\": \"string\",\n    \"last_seen_at\": \"1965-06-02T15:21:47.624Z\",\n    \"cpu\": \"string\",\n    \"ram_mb\": 8918,\n    \"disk_gb\": 79.69550244293356,\n    \"software\": [\n      {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      }\n    ],\n    \"warranty_expiry\": \"2021-04-25\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73530d03-82e7-45cc-bb9a-63dc482dd711",
+              "name": "Device not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "devices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the device"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8c9833de-b428-405c-a6e6-9a142f36be83",
+      "name": "Users",
+      "description": {
+        "content": "User management operations for accessing Spiceworks user and technician profiles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b65ee677-fe55-4a54-9b0d-a460fc61103f",
+          "name": "List Platform Users",
+          "request": {
+            "name": "List Platform Users",
+            "description": {
+              "content": "Retrieves a list of Spiceworks users and technicians associated with the account. Includes basic profile information such as name, email, role, and department.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "role",
+                  "value": "<string>",
+                  "description": "Filter by user role"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1b5ee61-e7e4-4967-822e-3d45ac024e25",
+              "name": "List of users retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "role",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"id\": 5653,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"CjdTV7dZ-7@xHxwvtMmYhhx.fpp\",\n      \"role\": \"admin\",\n      \"department\": \"string\",\n      \"phone\": \"string\",\n      \"avatar_url\": \"https://elWhYaSXFOubdiLQvkJqlSNDVffw.lmp3vZr4qpaGWeRlrOXJQThskILL3yulIfUvZkqixNRpX4VHy,-05W1O1za1PRr\"\n    },\n    {\n      \"id\": 245,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"GP7u2VyKrED@vHLkYPFUEfJanbFjenFnRLixhCZPue.qob\",\n      \"role\": \"user\",\n      \"department\": \"string\",\n      \"phone\": \"string\",\n      \"avatar_url\": \"https://cCLhvHaLoMARaSqseYF.mhmCNfYLdqhACqOav00fBzOEG+7klNX5+m3PUGnY0NYU+PPk6Z\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": 2696,\n    \"total_pages\": 3715,\n    \"total_count\": 7931,\n    \"per_page\": 6451\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e8a0ed1-21e0-4c26-9411-be9db8bd7d75",
+          "name": "Get Platform User",
+          "request": {
+            "name": "Get Platform User",
+            "description": {
+              "content": "Retrieves profile details for a specific Spiceworks user including name, email, role, department, phone, and avatar information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the user"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e936618-b501-40e6-b700-d04ea2c59d14",
+              "name": "User details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": 4492,\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"MSD@MHvmBPSHSdoEJkdPmaHVLpRTxV.ce\",\n    \"role\": \"admin\",\n    \"department\": \"string\",\n    \"phone\": \"string\",\n    \"avatar_url\": \"https://rswUIqLzzV.nupd,29Mfj83pl9OjcDwclX+PMjSe9zzVJ\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "205b5b7d-c3ac-4199-99b4-c1ef4f211d74",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the user"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://community.spiceworks.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "helpdesk inventory users"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://community.spiceworks.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "78f02c27-30b2-4013-bdb3-f1d1e1586222",
+    "name": "Spiceworks Cloud Apps API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated applications within the Spiceworks IT management platform. The API exposes Help Desk ticketing data, device inventory, and user information to embedded cloud apps. Applications are embedded within the Spiceworks UI and communicate with the platform through the spiceworks-sdk JavaScript library using a postMessage-based bridge. The API uses OAuth 2.0 authentication and provides access to tickets, comments, devices, and user profiles for IT professionals and app developers.\n\nContact Support:\n Name: Spiceworks Developer Community",
+      "type": "text/plain"
+    }
+  }
+}

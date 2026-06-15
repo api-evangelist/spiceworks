@@ -1,82 +1,75 @@
-# Spiceworks
+# Spiceworks (spiceworks)
 
-Spiceworks (https://community.spiceworks.com/) is an IT professional community and network providing tools for IT management, including a cloud-based help desk, network monitoring, and IT asset inventory. The Spiceworks Cloud Apps API enables developers to build integrated applications within the Spiceworks platform, accessing Help Desk ticketing, device inventory, and user management data through a JavaScript SDK with OAuth-based authentication.
+Spiceworks is an online community and marketplace where IT professionals can find advice, manage their networks, and discover and purchase IT products and services. The Spiceworks Cloud Apps API enables developers to build integrated applications within the Spiceworks platform, accessing Help Desk ticketing, device inventory, and user management data through a JavaScript SDK with OAuth-based authentication.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/spiceworks/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/spiceworks/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Access:** 3rd-Party
+
+## Tags
+
+- Community
+- Enterprise IT
+- IT Management
+
+## Timestamps
+
+- **Created:** 2024-01-01
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Spiceworks Cloud Apps API
 
-The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated apps within the Spiceworks platform, with access to Help Desk ticketing data, device inventory, and user information. Apps are embedded within the Spiceworks UI and communicate through a postMessage-based bridge.
+The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated apps within the Spiceworks platform, with access to Help Desk ticketing data, device inventory, and user information. It allows developers to create custom apps embedded in the Spiceworks interface with access to IT management data.
 
-- **Documentation:** https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
-- **Authentication:** https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/authentication/
-- **Help Desk Reference:** https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/reference/helpdesk/
-- **SDK:** https://github.com/spiceworks/spiceworks-js-sdk
-- **OpenAPI:** [openapi/spiceworks-cloud-apps-openapi.yml](openapi/spiceworks-cloud-apps-openapi.yml)
+- **Human URL:** [https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/](https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/)
 
-## OpenAPI Specifications
+#### Tags
 
-| API | File |
-|-----|------|
-| Spiceworks Cloud Apps API | [openapi/spiceworks-cloud-apps-openapi.yml](openapi/spiceworks-cloud-apps-openapi.yml) |
+- Cloud Apps
+- Community
+- Help Desk
+- IT Management
+- Ticketing
 
-## Spectral Rules
+#### Properties
 
-| Ruleset | File |
-|---------|------|
-| Spiceworks Rules | [rules/spiceworks-rules.yml](rules/spiceworks-rules.yml) |
+- [Documentation](https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/)
+- [Authentication](https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/authentication/)
+- [Documentation](https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/reference/helpdesk/)
+- [S D Ks](https://github.com/spiceworks/spiceworks-js-sdk)
+- [Examples](https://github.com/spiceworks/spiceworks-js-sdk/tree/master/examples/hello-world)
+- [OpenAPI](openapi/spiceworks-cloud-apps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/spiceworks-cloud-apps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/spiceworks-cloud-apps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Spectral Rules](rules/spiceworks-rules.yml)
 
-## Capabilities
+## Common Properties
 
-| Capability | Description | File |
-|------------|-------------|------|
-| IT Management | Unified IT help desk and inventory workflow for technicians | [capabilities/it-management.yaml](capabilities/it-management.yaml) |
+- [Website](https://community.spiceworks.com/)
+- [Sign Up](https://community.spiceworks.com/register)
+- [Login](https://community.spiceworks.com/login)
+- [Portal](https://spiceworks.github.io/developers.spiceworks.com/)
+- [Documentation](https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/)
+- [S D Ks](https://github.com/spiceworks/spiceworks-js-sdk)
+- [Support](https://community.spiceworks.com/help)
+- [Terms of Service](https://community.spiceworks.com/legal/terms)
+- [Privacy Policy](https://community.spiceworks.com/legal/privacy)
+- [Blog](https://community.spiceworks.com/blog)
+- [X (Twitter)](https://twitter.com/spiceworks)
+- [LinkedIn](https://www.linkedin.com/company/spiceworks)
+- [Facebook](https://www.facebook.com/Spiceworks)
+- [YouTube](https://www.youtube.com/spiceworks)
+- [Git Hub](https://github.com/spiceworks)
+- [OpenAPI](openapi/spiceworks-cloud-apps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Spectral Rules](rules/spiceworks-rules.yml)
+- [Vocabulary](vocabulary/spiceworks-vocabulary.yml)
 
-### Shared Definitions
+## Maintainers
 
-| API | File |
-|-----|------|
-| Cloud Apps | [capabilities/shared/cloud-apps.yaml](capabilities/shared/cloud-apps.yaml) |
-
-## JSON Schema
-
-| Schema | File |
-|--------|------|
-| Help Desk Ticket | [json-schema/spiceworks-ticket-schema.json](json-schema/spiceworks-ticket-schema.json) |
-| Inventory Device | [json-schema/spiceworks-device-schema.json](json-schema/spiceworks-device-schema.json) |
-
-## JSON Structure
-
-| Structure | File |
-|-----------|------|
-| Help Desk Ticket | [json-structure/spiceworks-ticket-structure.json](json-structure/spiceworks-ticket-structure.json) |
-
-## JSON-LD
-
-| Context | File |
-|---------|------|
-| Spiceworks Context | [json-ld/spiceworks-context.jsonld](json-ld/spiceworks-context.jsonld) |
-
-## Examples
-
-| Example | File |
-|---------|------|
-| List Tickets | [examples/spiceworks-list-tickets-example.json](examples/spiceworks-list-tickets-example.json) |
-| Get Device | [examples/spiceworks-get-device-example.json](examples/spiceworks-get-device-example.json) |
-
-## Vocabulary
-
-| Vocabulary | File |
-|------------|------|
-| Spiceworks Vocabulary | [vocabulary/spiceworks-vocabulary.yml](vocabulary/spiceworks-vocabulary.yml) |
-
-## Links
-
-- **Community:** https://community.spiceworks.com/
-- **Developer Portal:** https://spiceworks.github.io/developers.spiceworks.com/
-- **Help Center:** https://community.spiceworks.com/help
-- **Blog:** https://community.spiceworks.com/blog
-- **GitHub:** https://github.com/spiceworks
-- **LinkedIn:** https://www.linkedin.com/company/spiceworks
-- **Terms of Service:** https://community.spiceworks.com/legal/terms
-- **Privacy Policy:** https://community.spiceworks.com/legal/privacy
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com

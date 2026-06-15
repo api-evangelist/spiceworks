@@ -1,0 +1,282 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spiceworks Cloud Apps API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://community.spiceworks.com/oauth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tickets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Help Desk Tickets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/tickets",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter tickets by status"
+              },
+              {
+                "name": "assigned_to",
+                "value": "",
+                "type": "query",
+                "description": "Filter by assigned technician ID"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of tickets per page"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of Help Desk tickets from the Spiceworks platform. Results can be filtered by status, assignee, and other ticket attributes. Returns ticket summaries including ID, summary, status, priority, assignee, and timestamps."
+        },
+        {
+          "info": {
+            "name": "Create Help Desk Ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://community.spiceworks.com/api/v1/tickets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Help Desk ticket in the Spiceworks platform. The ticket is associated with the authenticated user's Spiceworks account. Required fields include summary and optionally a description, priority level, and assignee."
+        },
+        {
+          "info": {
+            "name": "Get Help Desk Ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/tickets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ticket"
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific Help Desk ticket by its ID, including summary, description, status, priority, assignee, creator, and all associated comments and attachments."
+        },
+        {
+          "info": {
+            "name": "Update Help Desk Ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://community.spiceworks.com/api/v1/tickets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ticket"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing Help Desk ticket. Allows changing status, priority, assignee, summary, description, and other ticket attributes. Only fields included in the request body are updated."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Ticket Comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/tickets/:ticket_id/comments",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ticket"
+              }
+            ]
+          },
+          "docs": "Retrieves all comments associated with a specific Help Desk ticket. Comments include the body text, the author, creation timestamp, and whether the comment is public or internal (technician-only)."
+        },
+        {
+          "info": {
+            "name": "Add Ticket Comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://community.spiceworks.com/api/v1/tickets/:ticket_id/comments",
+            "params": [
+              {
+                "name": "ticket_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the ticket"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new comment to an existing Help Desk ticket. Comments can be public (visible to the ticket requester) or internal (visible only to technicians). Supports plain text and basic HTML formatting."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Inventory Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/devices",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device type"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of devices per page"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of managed IT devices from the Spiceworks inventory. Devices include workstations, servers, network equipment, and other managed assets. Results can be filtered by device type, operating system, and other attributes."
+        },
+        {
+          "info": {
+            "name": "Get Inventory Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/devices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the device"
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific managed device by its ID, including hardware specifications, software inventory, operating system, network configuration, and warranty information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Platform Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/users",
+            "params": [
+              {
+                "name": "role",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user role"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of Spiceworks users and technicians associated with the account. Includes basic profile information such as name, email, role, and department."
+        },
+        {
+          "info": {
+            "name": "Get Platform User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user"
+              }
+            ]
+          },
+          "docs": "Retrieves profile details for a specific Spiceworks user including name, email, role, department, phone, and avatar information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
