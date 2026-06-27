@@ -46,7 +46,7 @@ common:
     type: Website
   - url: https://community.spiceworks.com/register
     name: Sign Up
-    type: SignUp
+    type: Signup
   - url: https://community.spiceworks.com/login
     name: Login
     type: Login
