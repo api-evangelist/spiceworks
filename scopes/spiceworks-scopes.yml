@@ -1,0 +1,31 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/spiceworks-cloud-apps-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/spiceworks-cloud-apps-openapi.yml
+  flows:
+  - flow: implicit
+    authorizationUrl: https://community.spiceworks.com/oauth/authorize
+  description: OAuth 2.0 authentication via the Spiceworks Cloud Apps platform. Applications
+    receive an implicit grant token through the JS SDK postMessage bridge when running inside
+    the Spiceworks UI.
+scopes:
+- scope: helpdesk
+  description: Access Help Desk tickets and comments
+  flows:
+  - implicit
+  sources:
+  - openapi/spiceworks-cloud-apps-openapi.yml
+- scope: inventory
+  description: Access device inventory data
+  flows:
+  - implicit
+  sources:
+  - openapi/spiceworks-cloud-apps-openapi.yml
+- scope: users
+  description: Access user profile data
+  flows:
+  - implicit
+  sources:
+  - openapi/spiceworks-cloud-apps-openapi.yml
