@@ -3,10 +3,9 @@
   "feeds": [
     {
       "source": "https://community.spiceworks.com/blog",
-      "saved": 0,
-      "error": "domain blocked / unable to fetch"
+      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-06-27T13:11:56Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 10
 }
