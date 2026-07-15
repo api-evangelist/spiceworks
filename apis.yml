@@ -41,6 +41,8 @@ created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 common:
+  - type: AgenticAccess
+    url: agentic-access/spiceworks-agentic-access.yml
   - type: DomainSecurity
     url: security/spiceworks-domain-security.yml
   - type: Authentication
