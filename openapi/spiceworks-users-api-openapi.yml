@@ -1,0 +1,166 @@
+openapi: 3.1.0
+info:
+  title: Spiceworks Cloud Apps Comments Users API
+  description: The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated applications within the Spiceworks IT management platform. The API exposes Help Desk ticketing data, device inventory, and user information to embedded cloud apps. Applications are embedded within the Spiceworks UI and communicate with the platform through the spiceworks-sdk JavaScript library using a postMessage-based bridge. The API uses OAuth 2.0 authentication and provides access to tickets, comments, devices, and user profiles for IT professionals and app developers.
+  version: '1.0'
+  contact:
+    name: Spiceworks Developer Community
+    url: https://community.spiceworks.com/
+  termsOfService: https://community.spiceworks.com/legal/terms
+servers:
+- url: https://community.spiceworks.com
+  description: Spiceworks Community Platform
+security:
+- oauth2:
+  - helpdesk
+  - inventory
+  - users
+tags:
+- name: Users
+  description: User management operations for accessing Spiceworks user and technician profiles
+paths:
+  /api/v1/users:
+    get:
+      operationId: listUsers
+      summary: List Platform Users
+      description: Retrieves a list of Spiceworks users and technicians associated with the account. Includes basic profile information such as name, email, role, and department.
+      tags:
+      - Users
+      parameters:
+      - name: role
+        in: query
+        description: Filter by user role
+        schema:
+          type: string
+          enum:
+          - admin
+          - technician
+          - user
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: List of users retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+  /api/v1/users/{id}:
+    get:
+      operationId: getUser
+      summary: Get Platform User
+      description: Retrieves profile details for a specific Spiceworks user including name, email, role, department, phone, and avatar information.
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier of the user
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: User details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    User:
+      type: object
+      description: A Spiceworks platform user or technician
+      properties:
+        id:
+          type: integer
+          description: Unique user identifier
+        first_name:
+          type: string
+          description: User first name
+        last_name:
+          type: string
+          description: User last name
+        email:
+          type: string
+          format: email
+          description: User email address
+        role:
+          type: string
+          description: User role in the platform
+          enum:
+          - admin
+          - technician
+          - user
+        department:
+          type: string
+          description: User department
+        phone:
+          type: string
+          description: User phone number
+        avatar_url:
+          type: string
+          format: uri
+          description: URL to the user avatar image
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses
+      properties:
+        current_page:
+          type: integer
+          description: Current page number
+        total_pages:
+          type: integer
+          description: Total number of pages
+        total_count:
+          type: integer
+          description: Total number of items
+        per_page:
+          type: integer
+          description: Items per page
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication via the Spiceworks Cloud Apps platform. Applications receive an implicit grant token through the JS SDK postMessage bridge when running inside the Spiceworks UI.
+      flows:
+        implicit:
+          authorizationUrl: https://community.spiceworks.com/oauth/authorize
+          scopes:
+            helpdesk: Access Help Desk tickets and comments
+            inventory: Access device inventory data
+            users: Access user profile data
+externalDocs:
+  description: Spiceworks Cloud Apps Developer Documentation
+  url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/

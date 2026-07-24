@@ -1,0 +1,354 @@
+openapi: 3.1.0
+info:
+  title: Spiceworks Cloud Apps Comments Tickets API
+  description: The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated applications within the Spiceworks IT management platform. The API exposes Help Desk ticketing data, device inventory, and user information to embedded cloud apps. Applications are embedded within the Spiceworks UI and communicate with the platform through the spiceworks-sdk JavaScript library using a postMessage-based bridge. The API uses OAuth 2.0 authentication and provides access to tickets, comments, devices, and user profiles for IT professionals and app developers.
+  version: '1.0'
+  contact:
+    name: Spiceworks Developer Community
+    url: https://community.spiceworks.com/
+  termsOfService: https://community.spiceworks.com/legal/terms
+servers:
+- url: https://community.spiceworks.com
+  description: Spiceworks Community Platform
+security:
+- oauth2:
+  - helpdesk
+  - inventory
+  - users
+tags:
+- name: Tickets
+  description: Help Desk ticket management operations for creating, reading, updating, and listing support tickets within the Spiceworks IT management platform
+paths:
+  /api/v1/tickets:
+    get:
+      operationId: listTickets
+      summary: List Help Desk Tickets
+      description: Retrieves a paginated list of Help Desk tickets from the Spiceworks platform. Results can be filtered by status, assignee, and other ticket attributes. Returns ticket summaries including ID, summary, status, priority, assignee, and timestamps.
+      tags:
+      - Tickets
+      parameters:
+      - name: status
+        in: query
+        description: Filter tickets by status
+        schema:
+          type: string
+          enum:
+          - open
+          - closed
+          - in_progress
+      - name: assigned_to
+        in: query
+        description: Filter by assigned technician ID
+        schema:
+          type: integer
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+          default: 1
+      - name: per_page
+        in: query
+        description: Number of tickets per page
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+      responses:
+        '200':
+          description: List of tickets retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tickets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Ticket'
+                  meta:
+                    $ref: '#/components/schemas/PaginationMeta'
+    post:
+      operationId: createTicket
+      summary: Create Help Desk Ticket
+      description: Creates a new Help Desk ticket in the Spiceworks platform. The ticket is associated with the authenticated user's Spiceworks account. Required fields include summary and optionally a description, priority level, and assignee.
+      tags:
+      - Tickets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketCreate'
+      responses:
+        '201':
+          description: Ticket created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/Ticket'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api/v1/tickets/{id}:
+    get:
+      operationId: getTicket
+      summary: Get Help Desk Ticket
+      description: Retrieves the full details of a specific Help Desk ticket by its ID, including summary, description, status, priority, assignee, creator, and all associated comments and attachments.
+      tags:
+      - Tickets
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier of the ticket
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Ticket details retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/TicketDetail'
+        '404':
+          description: Ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      operationId: updateTicket
+      summary: Update Help Desk Ticket
+      description: Updates an existing Help Desk ticket. Allows changing status, priority, assignee, summary, description, and other ticket attributes. Only fields included in the request body are updated.
+      tags:
+      - Tickets
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The unique identifier of the ticket
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketUpdate'
+      responses:
+        '200':
+          description: Ticket updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/Ticket'
+        '404':
+          description: Ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    TicketDetail:
+      allOf:
+      - $ref: '#/components/schemas/Ticket'
+      - type: object
+        properties:
+          description:
+            type: string
+            description: Full description of the ticket issue
+          comments:
+            type: array
+            items:
+              $ref: '#/components/schemas/Comment'
+          tags:
+            type: array
+            items:
+              type: string
+            description: Tags associated with the ticket
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+    Ticket:
+      type: object
+      description: A Spiceworks Help Desk support ticket
+      properties:
+        id:
+          type: integer
+          description: Unique ticket identifier
+        summary:
+          type: string
+          description: Brief description of the ticket issue
+        status:
+          type: string
+          description: Current ticket status
+          enum:
+          - open
+          - in_progress
+          - closed
+        priority:
+          type: string
+          description: Ticket priority level
+          enum:
+          - low
+          - medium
+          - high
+          - urgent
+        assignee:
+          $ref: '#/components/schemas/UserRef'
+        creator:
+          $ref: '#/components/schemas/UserRef'
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the ticket was created
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the ticket was last updated
+        due_date:
+          type: string
+          format: date
+          description: Optional due date for the ticket
+    Comment:
+      type: object
+      description: A comment on a Help Desk ticket
+      properties:
+        id:
+          type: integer
+          description: Unique comment identifier
+        body:
+          type: string
+          description: The comment text content
+        is_public:
+          type: boolean
+          description: Whether the comment is visible to the ticket requester (true) or internal to technicians only (false)
+        author:
+          $ref: '#/components/schemas/UserRef'
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the comment was created
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses
+      properties:
+        current_page:
+          type: integer
+          description: Current page number
+        total_pages:
+          type: integer
+          description: Total number of pages
+        total_count:
+          type: integer
+          description: Total number of items
+        per_page:
+          type: integer
+          description: Items per page
+    TicketUpdate:
+      type: object
+      properties:
+        summary:
+          type: string
+          description: Updated brief description
+          maxLength: 255
+        description:
+          type: string
+          description: Updated detailed description
+        status:
+          type: string
+          enum:
+          - open
+          - in_progress
+          - closed
+        priority:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - urgent
+        assignee_id:
+          type: integer
+          description: ID of the technician to assign the ticket to
+    TicketCreate:
+      type: object
+      required:
+      - summary
+      properties:
+        summary:
+          type: string
+          description: Brief description of the issue
+          maxLength: 255
+        description:
+          type: string
+          description: Detailed description of the issue
+        priority:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - urgent
+          default: medium
+        assignee_id:
+          type: integer
+          description: ID of the technician to assign the ticket to
+        due_date:
+          type: string
+          format: date
+          description: Optional due date for resolution
+    UserRef:
+      type: object
+      description: A brief reference to a Spiceworks user
+      properties:
+        id:
+          type: integer
+          description: Unique user identifier
+        first_name:
+          type: string
+          description: User first name
+        last_name:
+          type: string
+          description: User last name
+        email:
+          type: string
+          format: email
+          description: User email address
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication via the Spiceworks Cloud Apps platform. Applications receive an implicit grant token through the JS SDK postMessage bridge when running inside the Spiceworks UI.
+      flows:
+        implicit:
+          authorizationUrl: https://community.spiceworks.com/oauth/authorize
+          scopes:
+            helpdesk: Access Help Desk tickets and comments
+            inventory: Access device inventory data
+            users: Access user profile data
+externalDocs:
+  description: Spiceworks Cloud Apps Developer Documentation
+  url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/

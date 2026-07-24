@@ -1,0 +1,164 @@
+openapi: 3.1.0
+info:
+  title: Spiceworks Cloud Apps Comments API
+  description: The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated applications within the Spiceworks IT management platform. The API exposes Help Desk ticketing data, device inventory, and user information to embedded cloud apps. Applications are embedded within the Spiceworks UI and communicate with the platform through the spiceworks-sdk JavaScript library using a postMessage-based bridge. The API uses OAuth 2.0 authentication and provides access to tickets, comments, devices, and user profiles for IT professionals and app developers.
+  version: '1.0'
+  contact:
+    name: Spiceworks Developer Community
+    url: https://community.spiceworks.com/
+  termsOfService: https://community.spiceworks.com/legal/terms
+servers:
+- url: https://community.spiceworks.com
+  description: Spiceworks Community Platform
+security:
+- oauth2:
+  - helpdesk
+  - inventory
+  - users
+tags:
+- name: Comments
+  description: Ticket comment operations for adding and retrieving comments on Help Desk support tickets
+paths:
+  /api/v1/tickets/{ticket_id}/comments:
+    get:
+      operationId: listTicketComments
+      summary: List Ticket Comments
+      description: Retrieves all comments associated with a specific Help Desk ticket. Comments include the body text, the author, creation timestamp, and whether the comment is public or internal (technician-only).
+      tags:
+      - Comments
+      parameters:
+      - name: ticket_id
+        in: path
+        required: true
+        description: The unique identifier of the ticket
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Comments retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Comment'
+        '404':
+          description: Ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      operationId: createTicketComment
+      summary: Add Ticket Comment
+      description: Adds a new comment to an existing Help Desk ticket. Comments can be public (visible to the ticket requester) or internal (visible only to technicians). Supports plain text and basic HTML formatting.
+      tags:
+      - Comments
+      parameters:
+      - name: ticket_id
+        in: path
+        required: true
+        description: The unique identifier of the ticket
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentCreate'
+      responses:
+        '201':
+          description: Comment added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comment:
+                    $ref: '#/components/schemas/Comment'
+        '404':
+          description: Ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+    Comment:
+      type: object
+      description: A comment on a Help Desk ticket
+      properties:
+        id:
+          type: integer
+          description: Unique comment identifier
+        body:
+          type: string
+          description: The comment text content
+        is_public:
+          type: boolean
+          description: Whether the comment is visible to the ticket requester (true) or internal to technicians only (false)
+        author:
+          $ref: '#/components/schemas/UserRef'
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the comment was created
+    CommentCreate:
+      type: object
+      required:
+      - body
+      properties:
+        body:
+          type: string
+          description: The comment text content
+        is_public:
+          type: boolean
+          description: Whether the comment is visible to the requester
+          default: true
+    UserRef:
+      type: object
+      description: A brief reference to a Spiceworks user
+      properties:
+        id:
+          type: integer
+          description: Unique user identifier
+        first_name:
+          type: string
+          description: User first name
+        last_name:
+          type: string
+          description: User last name
+        email:
+          type: string
+          format: email
+          description: User email address
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 authentication via the Spiceworks Cloud Apps platform. Applications receive an implicit grant token through the JS SDK postMessage bridge when running inside the Spiceworks UI.
+      flows:
+        implicit:
+          authorizationUrl: https://community.spiceworks.com/oauth/authorize
+          scopes:
+            helpdesk: Access Help Desk tickets and comments
+            inventory: Access device inventory data
+            users: Access user profile data
+externalDocs:
+  description: Spiceworks Cloud Apps Developer Documentation
+  url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
