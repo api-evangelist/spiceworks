@@ -1,46 +1,130 @@
 aid: spiceworks
 url: https://raw.githubusercontent.com/api-evangelist/spiceworks/refs/heads/main/apis.yml
 apis:
-  - aid: spiceworks:spiceworks-cloud-apps-api
-    name: Spiceworks Cloud Apps API
-    tags:
-      - Cloud Apps
-      - Community
-      - Help Desk
-      - IT Management
-      - Ticketing
-    humanURL: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
-    properties:
-      - url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
-        type: Documentation
-      - url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/authentication/
-        type: Authentication
-      - url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/reference/helpdesk/
-        type: Documentation
-      - url: https://github.com/spiceworks/spiceworks-js-sdk
-        type: SDKs
-      - url: https://github.com/spiceworks/spiceworks-js-sdk/tree/master/examples/hello-world
-        type: Examples
-      - url: openapi/spiceworks-cloud-apps-openapi.yml
-        type: OpenAPI
-      - url: rules/spiceworks-rules.yml
-        type: SpectralRules
-    description: >-
-      The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated apps within the Spiceworks
-      platform, with access to Help Desk ticketing data, device inventory, and user information. It allows developers to
-      create custom apps embedded in the Spiceworks interface with access to IT management data.
+- aid: spiceworks:spiceworks-comments-api
+  name: Spiceworks Comments API
+  description: >-
+    Ticket comment operations for adding and retrieving comments on Help Desk support tickets
+  humanURL: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
+  tags:
+  - Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/spiceworks-comments-api-openapi.yml
+  - type: Documentation
+    url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
+  - type: Authentication
+    url: >-
+      https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/authentication/
+  - type: Documentation
+    url: >-
+      https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/reference/helpdesk/
+  - type: SDKs
+    url: https://github.com/spiceworks/spiceworks-js-sdk
+  - type: Examples
+    url: https://github.com/spiceworks/spiceworks-js-sdk/tree/master/examples/hello-world
+  - type: SpectralRules
+    url: rules/spiceworks-rules.yml
+- aid: spiceworks:spiceworks-devices-api
+  name: Spiceworks Devices API
+  description: >-
+    Device inventory operations for accessing information about managed IT devices including computers,
+    servers, and network equipment
+  humanURL: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
+  tags:
+  - Devices
+  properties:
+  - type: OpenAPI
+    url: openapi/spiceworks-devices-api-openapi.yml
+  - type: Documentation
+    url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
+  - type: Authentication
+    url: >-
+      https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/authentication/
+  - type: Documentation
+    url: >-
+      https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/reference/helpdesk/
+  - type: SDKs
+    url: https://github.com/spiceworks/spiceworks-js-sdk
+  - type: Examples
+    url: https://github.com/spiceworks/spiceworks-js-sdk/tree/master/examples/hello-world
+  - type: SpectralRules
+    url: rules/spiceworks-rules.yml
+- aid: spiceworks:spiceworks-tickets-api
+  name: Spiceworks Tickets API
+  description: >-
+    Help Desk ticket management operations for creating, reading, updating, and listing support tickets
+    within the Spiceworks IT management platform
+  humanURL: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
+  tags:
+  - Tickets
+  properties:
+  - type: OpenAPI
+    url: openapi/spiceworks-tickets-api-openapi.yml
+  - type: Documentation
+    url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
+  - type: Authentication
+    url: >-
+      https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/authentication/
+  - type: Documentation
+    url: >-
+      https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/reference/helpdesk/
+  - type: SDKs
+    url: https://github.com/spiceworks/spiceworks-js-sdk
+  - type: Examples
+    url: https://github.com/spiceworks/spiceworks-js-sdk/tree/master/examples/hello-world
+  - type: SpectralRules
+    url: rules/spiceworks-rules.yml
+- aid: spiceworks:spiceworks-users-api
+  name: Spiceworks Users API
+  description: User management operations for accessing Spiceworks user and technician profiles
+  humanURL: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/spiceworks-users-api-openapi.yml
+  - type: Documentation
+    url: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
+  - type: Authentication
+    url: >-
+      https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/authentication/
+  - type: Documentation
+    url: >-
+      https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/reference/helpdesk/
+  - type: SDKs
+    url: https://github.com/spiceworks/spiceworks-js-sdk
+  - type: Examples
+    url: https://github.com/spiceworks/spiceworks-js-sdk/tree/master/examples/hello-world
+  - type: SpectralRules
+    url: rules/spiceworks-rules.yml
 name: Spiceworks
 tags:
   - Community
   - Enterprise IT
   - IT Management
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/spiceworks.png
 access: 3rd-Party
 created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/spiceworks/overview
   - type: AgenticAccess
     url: agentic-access/spiceworks-agentic-access.yml
   - type: DomainSecurity
