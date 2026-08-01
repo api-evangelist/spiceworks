@@ -1,0 +1,319 @@
+{
+  "info": {
+    "_postman_id": "18093d50-ec26-41b8-8b04-6f31a8b69788",
+    "name": "Spiceworks Cloud Apps Comments Users API",
+    "description": "The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated applications within the Spiceworks IT management platform. The API exposes Help Desk ticketing data, device inventory, and user information to embedded cloud apps. Applications are embedded within the Spiceworks UI and communicate with the platform through the spiceworks-sdk JavaScript library using a postMessage-based bridge. The API uses OAuth 2.0 authentication and provides access to tickets, comments, devices, and user profiles for IT professionals and app developers.\n\nContact Support:\n Name: Spiceworks Developer Community",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:59:44.000Z",
+    "updatedAt": "2026-07-28T02:59:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-18093d50-ec26-41b8-8b04-6f31a8b69788"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "users",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Get Platform User",
+                      "id": "de98a171-41c0-437e-ba77-e44a2b2b8814",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/users/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "users",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c8e85933-133f-4973-9da3-638868b4467f",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique identifier of the user"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves profile details for a specific Spiceworks user including name, email, role, department, phone, and avatar information."
+                      },
+                      "response": [
+                        {
+                          "id": "477eb9ef-81a6-4813-8655-7604203400d8",
+                          "name": "User details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/users/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"user\": {\n    \"id\": \"<integer>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"role\": \"technician\",\n    \"department\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"avatar_url\": \"<uri>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:59:45.000Z",
+                          "updatedAt": "2026-07-28T02:59:45.000Z",
+                          "uid": "35240-477eb9ef-81a6-4813-8655-7604203400d8"
+                        },
+                        {
+                          "id": "aca6fef5-7d0e-4a5e-90ef-496dc777d39d",
+                          "name": "User not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/users/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-07-28T02:59:45.000Z",
+                          "updatedAt": "2026-07-28T02:59:45.000Z",
+                          "uid": "35240-aca6fef5-7d0e-4a5e-90ef-496dc777d39d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:59:45.000Z",
+                      "updatedAt": "2026-07-28T02:59:45.000Z",
+                      "uid": "35240-de98a171-41c0-437e-ba77-e44a2b2b8814"
+                    }
+                  ],
+                  "id": "e744f696-6219-459b-a7bf-285a2db2ef05",
+                  "createdAt": "2026-07-28T02:59:45.000Z",
+                  "updatedAt": "2026-07-28T02:59:45.000Z",
+                  "uid": "35240-e744f696-6219-459b-a7bf-285a2db2ef05"
+                },
+                {
+                  "name": "List Platform Users",
+                  "id": "8e19bf8e-0c32-4c44-a2ff-f2366fa0d04f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/users?role=admin&page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by user role",
+                          "key": "role",
+                          "value": "admin"
+                        },
+                        {
+                          "description": "Page number for pagination",
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a list of Spiceworks users and technicians associated with the account. Includes basic profile information such as name, email, role, and department."
+                  },
+                  "response": [
+                    {
+                      "id": "c31edd49-05a7-4d52-8f8d-011ff79973d7",
+                      "name": "List of users retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/users?role=admin&page=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "users"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by user role",
+                              "key": "role",
+                              "value": "admin"
+                            },
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"users\": [\n    {\n      \"id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"role\": \"technician\",\n      \"department\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"avatar_url\": \"<uri>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\",\n      \"role\": \"admin\",\n      \"department\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"avatar_url\": \"<uri>\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": \"<integer>\",\n    \"total_pages\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"per_page\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:59:45.000Z",
+                      "updatedAt": "2026-07-28T02:59:45.000Z",
+                      "uid": "35240-c31edd49-05a7-4d52-8f8d-011ff79973d7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:45.000Z",
+                  "updatedAt": "2026-07-28T02:59:45.000Z",
+                  "uid": "35240-8e19bf8e-0c32-4c44-a2ff-f2366fa0d04f"
+                }
+              ],
+              "id": "4645a0a4-1bea-4a61-8600-2e9e719f3e36",
+              "createdAt": "2026-07-28T02:59:45.000Z",
+              "updatedAt": "2026-07-28T02:59:45.000Z",
+              "uid": "35240-4645a0a4-1bea-4a61-8600-2e9e719f3e36"
+            }
+          ],
+          "id": "9a7a70ee-1549-4c80-8513-79274bccad0e",
+          "createdAt": "2026-07-28T02:59:45.000Z",
+          "updatedAt": "2026-07-28T02:59:45.000Z",
+          "uid": "35240-9a7a70ee-1549-4c80-8513-79274bccad0e"
+        }
+      ],
+      "id": "a60ac853-e0ea-41b4-92c9-f55864576fe2",
+      "createdAt": "2026-07-28T02:59:45.000Z",
+      "updatedAt": "2026-07-28T02:59:45.000Z",
+      "uid": "35240-a60ac853-e0ea-41b4-92c9-f55864576fe2"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "helpdesk inventory users",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://community.spiceworks.com/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://community.spiceworks.com"
+    }
+  ]
+}

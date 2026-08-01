@@ -1,0 +1,686 @@
+{
+  "info": {
+    "_postman_id": "29861288-b92f-4c01-8e50-9a7d0f51fea7",
+    "name": "Spiceworks Cloud Apps Comments Tickets API",
+    "description": "The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated applications within the Spiceworks IT management platform. The API exposes Help Desk ticketing data, device inventory, and user information to embedded cloud apps. Applications are embedded within the Spiceworks UI and communicate with the platform through the spiceworks-sdk JavaScript library using a postMessage-based bridge. The API uses OAuth 2.0 authentication and provides access to tickets, comments, devices, and user profiles for IT professionals and app developers.\n\nContact Support:\n Name: Spiceworks Developer Community",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:59:43.000Z",
+    "updatedAt": "2026-07-28T02:59:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-29861288-b92f-4c01-8e50-9a7d0f51fea7"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "tickets",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Get Help Desk Ticket",
+                      "id": "b1abe0b8-02a1-4d48-9274-9fe1bb339a32",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/tickets/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "tickets",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5e0dc2fa-173e-49e5-933c-8d291615e9ea",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique identifier of the ticket"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the full details of a specific Help Desk ticket by its ID, including summary, description, status, priority, assignee, creator, and all associated comments and attachments."
+                      },
+                      "response": [
+                        {
+                          "id": "51aaa2aa-271d-4aea-8cb1-68f0200df525",
+                          "name": "Ticket details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tickets/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tickets",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ticket\": {\n    \"id\": \"<integer>\",\n    \"summary\": \"<string>\",\n    \"status\": \"closed\",\n    \"priority\": \"medium\",\n    \"assignee\": {\n      \"id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\"\n    },\n    \"creator\": {\n      \"id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\"\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"due_date\": \"<date>\",\n    \"description\": \"<string>\",\n    \"comments\": [\n      {\n        \"id\": \"<integer>\",\n        \"body\": \"<string>\",\n        \"is_public\": \"<boolean>\",\n        \"author\": {\n          \"id\": \"<integer>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"created_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"body\": \"<string>\",\n        \"is_public\": \"<boolean>\",\n        \"author\": {\n          \"id\": \"<integer>\",\n          \"first_name\": \"<string>\",\n          \"last_name\": \"<string>\",\n          \"email\": \"<email>\"\n        },\n        \"created_at\": \"<dateTime>\"\n      }\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "createdAt": "2026-07-28T02:59:44.000Z",
+                          "updatedAt": "2026-07-28T02:59:44.000Z",
+                          "uid": "35240-51aaa2aa-271d-4aea-8cb1-68f0200df525"
+                        },
+                        {
+                          "id": "bf3ddaad-914f-4c26-9766-2f4b3e92d35c",
+                          "name": "Ticket not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tickets/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tickets",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-07-28T02:59:44.000Z",
+                          "updatedAt": "2026-07-28T02:59:44.000Z",
+                          "uid": "35240-bf3ddaad-914f-4c26-9766-2f4b3e92d35c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:59:44.000Z",
+                      "updatedAt": "2026-07-28T02:59:44.000Z",
+                      "uid": "35240-b1abe0b8-02a1-4d48-9274-9fe1bb339a32"
+                    },
+                    {
+                      "name": "Update Help Desk Ticket",
+                      "id": "9b895804-63ef-43bb-8d37-aa2f397e59c1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"in_progress\",\n  \"priority\": \"urgent\",\n  \"assignee_id\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/tickets/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "tickets",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "65934e21-89d8-443a-b0d6-93b61110215a",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique identifier of the ticket"
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing Help Desk ticket. Allows changing status, priority, assignee, summary, description, and other ticket attributes. Only fields included in the request body are updated."
+                      },
+                      "response": [
+                        {
+                          "id": "6df26309-46a8-4b3a-b524-efb89dea0939",
+                          "name": "Ticket updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"in_progress\",\n  \"priority\": \"urgent\",\n  \"assignee_id\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tickets/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tickets",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ticket\": {\n    \"id\": \"<integer>\",\n    \"summary\": \"<string>\",\n    \"status\": \"open\",\n    \"priority\": \"medium\",\n    \"assignee\": {\n      \"id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\"\n    },\n    \"creator\": {\n      \"id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\"\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"due_date\": \"<date>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:59:44.000Z",
+                          "updatedAt": "2026-07-28T02:59:44.000Z",
+                          "uid": "35240-6df26309-46a8-4b3a-b524-efb89dea0939"
+                        },
+                        {
+                          "id": "b5173183-22b1-4485-a67a-b171d9ec37b4",
+                          "name": "Ticket not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"in_progress\",\n  \"priority\": \"urgent\",\n  \"assignee_id\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/tickets/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "tickets",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-07-28T02:59:44.000Z",
+                          "updatedAt": "2026-07-28T02:59:44.000Z",
+                          "uid": "35240-b5173183-22b1-4485-a67a-b171d9ec37b4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:59:44.000Z",
+                      "updatedAt": "2026-07-28T02:59:44.000Z",
+                      "uid": "35240-9b895804-63ef-43bb-8d37-aa2f397e59c1"
+                    }
+                  ],
+                  "id": "27ad4f1c-306b-4649-9f97-1d86ecd51cb7",
+                  "createdAt": "2026-07-28T02:59:44.000Z",
+                  "updatedAt": "2026-07-28T02:59:44.000Z",
+                  "uid": "35240-27ad4f1c-306b-4649-9f97-1d86ecd51cb7"
+                },
+                {
+                  "name": "List Help Desk Tickets",
+                  "id": "2d205e54-add0-45bc-9b97-e5c72220a52d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/tickets?status=in_progress&assigned_to=<integer>&page=1&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "tickets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter tickets by status",
+                          "key": "status",
+                          "value": "in_progress"
+                        },
+                        {
+                          "description": "Filter by assigned technician ID",
+                          "key": "assigned_to",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Page number for pagination",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of tickets per page",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of Help Desk tickets from the Spiceworks platform. Results can be filtered by status, assignee, and other ticket attributes. Returns ticket summaries including ID, summary, status, priority, assignee, and timestamps."
+                  },
+                  "response": [
+                    {
+                      "id": "bb7f2ffc-f7e9-48e0-a20a-a9b811ce4306",
+                      "name": "List of tickets retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/tickets?status=in_progress&assigned_to=<integer>&page=1&per_page=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "tickets"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter tickets by status",
+                              "key": "status",
+                              "value": "in_progress"
+                            },
+                            {
+                              "description": "Filter by assigned technician ID",
+                              "key": "assigned_to",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of tickets per page",
+                              "key": "per_page",
+                              "value": "25"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"tickets\": [\n    {\n      \"id\": \"<integer>\",\n      \"summary\": \"<string>\",\n      \"status\": \"in_progress\",\n      \"priority\": \"medium\",\n      \"assignee\": {\n        \"id\": \"<integer>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      \"creator\": {\n        \"id\": \"<integer>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"due_date\": \"<date>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"summary\": \"<string>\",\n      \"status\": \"closed\",\n      \"priority\": \"urgent\",\n      \"assignee\": {\n        \"id\": \"<integer>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      \"creator\": {\n        \"id\": \"<integer>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"email\": \"<email>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"due_date\": \"<date>\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": \"<integer>\",\n    \"total_pages\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"per_page\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:59:44.000Z",
+                      "updatedAt": "2026-07-28T02:59:44.000Z",
+                      "uid": "35240-bb7f2ffc-f7e9-48e0-a20a-a9b811ce4306"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:44.000Z",
+                  "updatedAt": "2026-07-28T02:59:44.000Z",
+                  "uid": "35240-2d205e54-add0-45bc-9b97-e5c72220a52d"
+                },
+                {
+                  "name": "Create Help Desk Ticket",
+                  "id": "0abee365-5e06-4f7a-afff-dd26007ae00f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"medium\",\n  \"assignee_id\": \"<integer>\",\n  \"due_date\": \"<date>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/tickets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "tickets"
+                      ]
+                    },
+                    "description": "Creates a new Help Desk ticket in the Spiceworks platform. The ticket is associated with the authenticated user's Spiceworks account. Required fields include summary and optionally a description, priority level, and assignee."
+                  },
+                  "response": [
+                    {
+                      "id": "377327ac-190a-43a7-8819-32f2b1150235",
+                      "name": "Ticket created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"medium\",\n  \"assignee_id\": \"<integer>\",\n  \"due_date\": \"<date>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/tickets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "tickets"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ticket\": {\n    \"id\": \"<integer>\",\n    \"summary\": \"<string>\",\n    \"status\": \"open\",\n    \"priority\": \"medium\",\n    \"assignee\": {\n      \"id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\"\n    },\n    \"creator\": {\n      \"id\": \"<integer>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<email>\"\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"due_date\": \"<date>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:59:44.000Z",
+                      "updatedAt": "2026-07-28T02:59:44.000Z",
+                      "uid": "35240-377327ac-190a-43a7-8819-32f2b1150235"
+                    },
+                    {
+                      "id": "c90eb6d9-389b-4781-9823-8ffb3fd78aec",
+                      "name": "Validation error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"summary\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"medium\",\n  \"assignee_id\": \"<integer>\",\n  \"due_date\": \"<date>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/tickets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "tickets"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T02:59:44.000Z",
+                      "updatedAt": "2026-07-28T02:59:44.000Z",
+                      "uid": "35240-c90eb6d9-389b-4781-9823-8ffb3fd78aec"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:44.000Z",
+                  "updatedAt": "2026-07-28T02:59:44.000Z",
+                  "uid": "35240-0abee365-5e06-4f7a-afff-dd26007ae00f"
+                }
+              ],
+              "id": "54c12372-252b-4cd6-9d04-13cc75e8e40b",
+              "createdAt": "2026-07-28T02:59:44.000Z",
+              "updatedAt": "2026-07-28T02:59:44.000Z",
+              "uid": "35240-54c12372-252b-4cd6-9d04-13cc75e8e40b"
+            }
+          ],
+          "id": "9419cd2a-4806-4208-a06b-c7b4785286c9",
+          "createdAt": "2026-07-28T02:59:44.000Z",
+          "updatedAt": "2026-07-28T02:59:44.000Z",
+          "uid": "35240-9419cd2a-4806-4208-a06b-c7b4785286c9"
+        }
+      ],
+      "id": "69a27863-de78-4556-8e08-a52bfbda4483",
+      "createdAt": "2026-07-28T02:59:44.000Z",
+      "updatedAt": "2026-07-28T02:59:44.000Z",
+      "uid": "35240-69a27863-de78-4556-8e08-a52bfbda4483"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "helpdesk inventory users",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://community.spiceworks.com/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://community.spiceworks.com"
+    }
+  ]
+}

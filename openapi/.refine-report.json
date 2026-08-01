@@ -1,0 +1,20 @@
+{
+  "provider": "spiceworks",
+  "sources": [
+    "spiceworks-comments-api-openapi.yml",
+    "spiceworks-devices-api-openapi.yml",
+    "spiceworks-tickets-api-openapi.yml",
+    "spiceworks-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "spiceworks-comments-api-openapi.yml",
+    "spiceworks-devices-api-openapi.yml",
+    "spiceworks-tickets-api-openapi.yml",
+    "spiceworks-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

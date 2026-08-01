@@ -1,0 +1,329 @@
+{
+  "info": {
+    "_postman_id": "7d1bb1e1-820e-47a4-96e7-24faa33b7114",
+    "name": "Spiceworks Cloud Apps Comments Devices API",
+    "description": "The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated applications within the Spiceworks IT management platform. The API exposes Help Desk ticketing data, device inventory, and user information to embedded cloud apps. Applications are embedded within the Spiceworks UI and communicate with the platform through the spiceworks-sdk JavaScript library using a postMessage-based bridge. The API uses OAuth 2.0 authentication and provides access to tickets, comments, devices, and user profiles for IT professionals and app developers.\n\nContact Support:\n Name: Spiceworks Developer Community",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:59:42.000Z",
+    "updatedAt": "2026-07-28T02:59:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7d1bb1e1-820e-47a4-96e7-24faa33b7114"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "devices",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Get Inventory Device",
+                      "id": "7f975ed0-3d7b-43dc-8453-cc7ee5f91268",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/devices/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "devices",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "be9c9740-1a49-4667-b03d-ee0559b08a33",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) The unique identifier of the device"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the full details of a specific managed device by its ID, including hardware specifications, software inventory, operating system, network configuration, and warranty information."
+                      },
+                      "response": [
+                        {
+                          "id": "64c05be9-82e5-41e5-b919-37f4147f854c",
+                          "name": "Device details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/devices/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "devices",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"device\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"type\": \"server\",\n    \"manufacturer\": \"<string>\",\n    \"model\": \"<string>\",\n    \"serial_number\": \"<string>\",\n    \"ip_address\": \"<string>\",\n    \"mac_address\": \"<string>\",\n    \"os_name\": \"<string>\",\n    \"os_version\": \"<string>\",\n    \"last_seen_at\": \"<dateTime>\",\n    \"cpu\": \"<string>\",\n    \"ram_mb\": \"<integer>\",\n    \"disk_gb\": \"<number>\",\n    \"software\": [\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    ],\n    \"warranty_expiry\": \"<date>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:59:43.000Z",
+                          "updatedAt": "2026-07-28T02:59:43.000Z",
+                          "uid": "35240-64c05be9-82e5-41e5-b919-37f4147f854c"
+                        },
+                        {
+                          "id": "59c62348-b48b-4940-85fa-4397091f6a2c",
+                          "name": "Device not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v1/devices/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v1",
+                                "devices",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"details\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-07-28T02:59:43.000Z",
+                          "updatedAt": "2026-07-28T02:59:43.000Z",
+                          "uid": "35240-59c62348-b48b-4940-85fa-4397091f6a2c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:59:43.000Z",
+                      "updatedAt": "2026-07-28T02:59:43.000Z",
+                      "uid": "35240-7f975ed0-3d7b-43dc-8453-cc7ee5f91268"
+                    }
+                  ],
+                  "id": "44cc251e-8e4b-46ef-81c9-53de9c50fc40",
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-44cc251e-8e4b-46ef-81c9-53de9c50fc40"
+                },
+                {
+                  "name": "List Inventory Devices",
+                  "id": "06ae20aa-0684-42f5-8d88-115b474fe9b3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v1/devices?type=mobile&page=1&per_page=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v1",
+                        "devices"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by device type",
+                          "key": "type",
+                          "value": "mobile"
+                        },
+                        {
+                          "description": "Page number for pagination",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of devices per page",
+                          "key": "per_page",
+                          "value": "25"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a paginated list of managed IT devices from the Spiceworks inventory. Devices include workstations, servers, network equipment, and other managed assets. Results can be filtered by device type, operating system, and other attributes."
+                  },
+                  "response": [
+                    {
+                      "id": "7ff63854-f676-43f2-a514-dff89c070020",
+                      "name": "List of devices retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v1/devices?type=mobile&page=1&per_page=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v1",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by device type",
+                              "key": "type",
+                              "value": "mobile"
+                            },
+                            {
+                              "description": "Page number for pagination",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of devices per page",
+                              "key": "per_page",
+                              "value": "25"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"devices\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"mobile\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"ip_address\": \"<string>\",\n      \"mac_address\": \"<string>\",\n      \"os_name\": \"<string>\",\n      \"os_version\": \"<string>\",\n      \"last_seen_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"type\": \"mobile\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"ip_address\": \"<string>\",\n      \"mac_address\": \"<string>\",\n      \"os_name\": \"<string>\",\n      \"os_version\": \"<string>\",\n      \"last_seen_at\": \"<dateTime>\"\n    }\n  ],\n  \"meta\": {\n    \"current_page\": \"<integer>\",\n    \"total_pages\": \"<integer>\",\n    \"total_count\": \"<integer>\",\n    \"per_page\": \"<integer>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:59:43.000Z",
+                      "updatedAt": "2026-07-28T02:59:43.000Z",
+                      "uid": "35240-7ff63854-f676-43f2-a514-dff89c070020"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:59:43.000Z",
+                  "updatedAt": "2026-07-28T02:59:43.000Z",
+                  "uid": "35240-06ae20aa-0684-42f5-8d88-115b474fe9b3"
+                }
+              ],
+              "id": "3009572a-1a4d-449b-8475-ddc4f7fb6400",
+              "createdAt": "2026-07-28T02:59:43.000Z",
+              "updatedAt": "2026-07-28T02:59:43.000Z",
+              "uid": "35240-3009572a-1a4d-449b-8475-ddc4f7fb6400"
+            }
+          ],
+          "id": "1152af65-0de5-4024-a052-ba20c2f6afdd",
+          "createdAt": "2026-07-28T02:59:43.000Z",
+          "updatedAt": "2026-07-28T02:59:43.000Z",
+          "uid": "35240-1152af65-0de5-4024-a052-ba20c2f6afdd"
+        }
+      ],
+      "id": "ea362572-d37f-4fb8-842d-417c4159711b",
+      "createdAt": "2026-07-28T02:59:43.000Z",
+      "updatedAt": "2026-07-28T02:59:43.000Z",
+      "uid": "35240-ea362572-d37f-4fb8-842d-417c4159711b"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "helpdesk inventory users",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://community.spiceworks.com/oauth/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://community.spiceworks.com"
+    }
+  ]
+}
