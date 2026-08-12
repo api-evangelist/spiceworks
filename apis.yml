@@ -178,7 +178,7 @@ common:
   - url: https://github.com/spiceworks
     name: Spiceworks on GitHub
     type: GitHub
-  - url: openapi/spiceworks-cloud-apps-openapi.yml
+  - url: openapi/_original/spiceworks-cloud-apps-openapi.yml
     name: Spiceworks Cloud Apps OpenAPI
     type: OpenAPI
   - url: rules/spiceworks-rules.yml
