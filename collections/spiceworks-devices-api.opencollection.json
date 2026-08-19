@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spiceworks Cloud Apps Comments Devices API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://community.spiceworks.com/oauth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Devices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Inventory Devices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/devices",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by device type"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of devices per page"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of managed IT devices from the Spiceworks inventory. Devices include workstations, servers, network equipment, and other managed assets. Results can be filtered by device type, operating system, and other attributes."
+        },
+        {
+          "info": {
+            "name": "Get Inventory Device",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/devices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the device"
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific managed device by its ID, including hardware specifications, software inventory, operating system, network configuration, and warranty information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

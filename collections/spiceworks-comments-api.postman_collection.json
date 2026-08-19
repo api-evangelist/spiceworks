@@ -1,0 +1,392 @@
+{
+  "item": [
+    {
+      "id": "b5a05d26-22e5-41e5-a049-22c41c0a4b67",
+      "name": "Comments",
+      "description": {
+        "content": "Ticket comment operations for adding and retrieving comments on Help Desk support tickets",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92c81d0e-3411-4f74-9792-084b80d4f54d",
+          "name": "List Ticket Comments",
+          "request": {
+            "name": "List Ticket Comments",
+            "description": {
+              "content": "Retrieves all comments associated with a specific Help Desk ticket. Comments include the body text, the author, creation timestamp, and whether the comment is public or internal (technician-only).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tickets",
+                ":ticket_id",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) The unique identifier of the ticket"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f2bfe05-1498-43bc-b51a-270b41184199",
+              "name": "Comments retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":ticket_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comments\": [\n    {\n      \"id\": 3979,\n      \"body\": \"string\",\n      \"is_public\": false,\n      \"author\": {\n        \"id\": 3812,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"f3ygkj9xh9@gPJKglOj.ula\"\n      },\n      \"created_at\": \"1979-08-09T09:35:17.029Z\"\n    },\n    {\n      \"id\": 7258,\n      \"body\": \"string\",\n      \"is_public\": true,\n      \"author\": {\n        \"id\": 6351,\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"email\": \"MXQFinr4@ygjLlAVDFC.rnq\"\n      },\n      \"created_at\": \"2018-06-11T06:35:49.246Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47571c26-ff4a-4dbf-baf2-df06cc66a02d",
+              "name": "Ticket not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":ticket_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e03b533-698c-46dd-ae1e-dd1dbb3b224d",
+          "name": "Add Ticket Comment",
+          "request": {
+            "name": "Add Ticket Comment",
+            "description": {
+              "content": "Adds a new comment to an existing Help Desk ticket. Comments can be public (visible to the ticket requester) or internal (visible only to technicians). Supports plain text and basic HTML formatting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "tickets",
+                ":ticket_id",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticket_id",
+                  "description": "(Required) The unique identifier of the ticket"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"<string>\",\n  \"is_public\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66504dac-1ba7-46aa-bdd3-a93a10669ffb",
+              "name": "Comment added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":ticket_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"is_public\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comment\": {\n    \"id\": 9568,\n    \"body\": \"string\",\n    \"is_public\": true,\n    \"author\": {\n      \"id\": 3359,\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"otojmj-5b@RrUFBeemuYWYAYfsy.peci\"\n    },\n    \"created_at\": \"2006-11-06T17:04:20.868Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8fe2199-3193-4b8f-839b-3a30bfb6aceb",
+              "name": "Ticket not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "tickets",
+                    ":ticket_id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticket_id",
+                      "description": "(Required) The unique identifier of the ticket"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": \"<string>\",\n  \"is_public\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"details\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://community.spiceworks.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "helpdesk inventory users"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://community.spiceworks.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5e5302ce-9881-4f71-b9f6-cc0870d2dfd5",
+    "name": "Spiceworks Cloud Apps Comments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated applications within the Spiceworks IT management platform. The API exposes Help Desk ticketing data, device inventory, and user information to embedded cloud apps. Applications are embedded within the Spiceworks UI and communicate with the platform through the spiceworks-sdk JavaScript library using a postMessage-based bridge. The API uses OAuth 2.0 authentication and provides access to tickets, comments, devices, and user profiles for IT professionals and app developers.\n\nContact Support:\n Name: Spiceworks Developer Community",
+      "type": "text/plain"
+    }
+  }
+}

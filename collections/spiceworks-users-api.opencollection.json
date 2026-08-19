@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spiceworks Cloud Apps Comments Users API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://community.spiceworks.com/oauth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Platform Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/users",
+            "params": [
+              {
+                "name": "role",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user role"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of Spiceworks users and technicians associated with the account. Includes basic profile information such as name, email, role, and department."
+        },
+        {
+          "info": {
+            "name": "Get Platform User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://community.spiceworks.com/api/v1/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the user"
+              }
+            ]
+          },
+          "docs": "Retrieves profile details for a specific Spiceworks user including name, email, role, department, phone, and avatar information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
