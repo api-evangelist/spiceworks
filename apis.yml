@@ -80,6 +80,8 @@ apis:
   description: User management operations for accessing Spiceworks user and technician profiles
   humanURL: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
