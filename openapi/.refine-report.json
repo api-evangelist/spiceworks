@@ -1,10 +1,7 @@
 {
   "provider": "spiceworks",
   "sources": [
-    "spiceworks-comments-api-openapi.yml",
-    "spiceworks-devices-api-openapi.yml",
-    "spiceworks-tickets-api-openapi.yml",
-    "spiceworks-users-api-openapi.yml"
+    "_original/spiceworks-cloud-apps-openapi.yml"
   ],
   "outputs": [
     "spiceworks-comments-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "spiceworks-cloud-apps-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "spiceworks-comments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spiceworks-devices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spiceworks-tickets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spiceworks-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
