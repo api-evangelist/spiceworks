@@ -163,64 +163,22 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Ticket:
+    PaginationMeta:
       type: object
-      description: A Spiceworks Help Desk support ticket
+      description: Pagination metadata for list responses
       properties:
-        id:
+        current_page:
           type: integer
-          description: Unique ticket identifier
-        summary:
-          type: string
-          description: Brief description of the ticket issue
-        status:
-          type: string
-          description: Current ticket status
-          enum:
-          - open
-          - in_progress
-          - closed
-        priority:
-          type: string
-          description: Ticket priority level
-          enum:
-          - low
-          - medium
-          - high
-          - urgent
-        assignee:
-          $ref: '#/components/schemas/UserRef'
-        creator:
-          $ref: '#/components/schemas/UserRef'
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when the ticket was created
-        updated_at:
-          type: string
-          format: date-time
-          description: Timestamp when the ticket was last updated
-        due_date:
-          type: string
-          format: date
-          description: Optional due date for the ticket
-    UserRef:
-      type: object
-      description: A brief reference to a Spiceworks user
-      properties:
-        id:
+          description: Current page number
+        total_pages:
           type: integer
-          description: Unique user identifier
-        first_name:
-          type: string
-          description: User first name
-        last_name:
-          type: string
-          description: User last name
-        email:
-          type: string
-          format: email
-          description: User email address
+          description: Total number of pages
+        total_count:
+          type: integer
+          description: Total number of items
+        per_page:
+          type: integer
+          description: Items per page
     TicketDetail:
       allOf:
       - $ref: '#/components/schemas/Ticket'
@@ -284,22 +242,59 @@ components:
           type: string
           format: date-time
           description: Timestamp when the comment was created
-    PaginationMeta:
+    Ticket:
       type: object
-      description: Pagination metadata for list responses
+      description: A Spiceworks Help Desk support ticket
       properties:
-        current_page:
+        id:
           type: integer
-          description: Current page number
-        total_pages:
-          type: integer
-          description: Total number of pages
-        total_count:
-          type: integer
-          description: Total number of items
-        per_page:
-          type: integer
-          description: Items per page
+          description: Unique ticket identifier
+        summary:
+          type: string
+          description: Brief description of the ticket issue
+        status:
+          type: string
+          description: Current ticket status
+          enum:
+          - open
+          - in_progress
+          - closed
+        priority:
+          type: string
+          description: Ticket priority level
+          enum:
+          - low
+          - medium
+          - high
+          - urgent
+        assignee:
+          $ref: '#/components/schemas/UserRef'
+        creator:
+          $ref: '#/components/schemas/UserRef'
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the ticket was created
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the ticket was last updated
+        due_date:
+          type: string
+          format: date
+          description: Optional due date for the ticket
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
     TicketUpdate:
       type: object
       properties:
@@ -326,18 +321,23 @@ components:
         assignee_id:
           type: integer
           description: ID of the technician to assign the ticket to
-    Error:
+    UserRef:
       type: object
-      description: API error response
+      description: A brief reference to a Spiceworks user
       properties:
-        error:
+        id:
+          type: integer
+          description: Unique user identifier
+        first_name:
           type: string
-          description: Error message
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
+          description: User first name
+        last_name:
+          type: string
+          description: User last name
+        email:
+          type: string
+          format: email
+          description: User email address
   securitySchemes:
     oauth2:
       type: oauth2

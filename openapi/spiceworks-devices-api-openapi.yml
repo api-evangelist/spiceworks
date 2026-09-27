@@ -97,6 +97,46 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+    DeviceDetail:
+      allOf:
+      - $ref: '#/components/schemas/Device'
+      - type: object
+        properties:
+          cpu:
+            type: string
+            description: CPU model and speed
+          ram_mb:
+            type: integer
+            description: Total RAM in megabytes
+          disk_gb:
+            type: number
+            description: Total disk capacity in gigabytes
+          software:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                version:
+                  type: string
+            description: List of installed software applications
+          warranty_expiry:
+            type: string
+            format: date
+            description: Device warranty expiration date
     Device:
       type: object
       description: A managed IT device in the Spiceworks inventory
@@ -142,46 +182,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the device was last detected on the network
-    Error:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          description: Error message
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
-    DeviceDetail:
-      allOf:
-      - $ref: '#/components/schemas/Device'
-      - type: object
-        properties:
-          cpu:
-            type: string
-            description: CPU model and speed
-          ram_mb:
-            type: integer
-            description: Total RAM in megabytes
-          disk_gb:
-            type: number
-            description: Total disk capacity in gigabytes
-          software:
-            type: array
-            items:
-              type: object
-              properties:
-                name:
-                  type: string
-                version:
-                  type: string
-            description: List of installed software applications
-          warranty_expiry:
-            type: string
-            format: date
-            description: Device warranty expiration date
     PaginationMeta:
       type: object
       description: Pagination metadata for list responses

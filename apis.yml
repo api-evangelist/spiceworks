@@ -57,6 +57,8 @@ apis:
     within the Spiceworks IT management platform
   humanURL: https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/
   tags:
+  - Ticketing
+  tags_raw:
   - Tickets
   properties:
   - type: OpenAPI
