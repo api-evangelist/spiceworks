@@ -88,18 +88,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          description: Error message
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
     CommentCreate:
       type: object
       required:
@@ -112,23 +100,6 @@ components:
           type: boolean
           description: Whether the comment is visible to the requester
           default: true
-    UserRef:
-      type: object
-      description: A brief reference to a Spiceworks user
-      properties:
-        id:
-          type: integer
-          description: Unique user identifier
-        first_name:
-          type: string
-          description: User first name
-        last_name:
-          type: string
-          description: User last name
-        email:
-          type: string
-          format: email
-          description: User email address
     Comment:
       type: object
       description: A comment on a Help Desk ticket
@@ -148,6 +119,35 @@ components:
           type: string
           format: date-time
           description: Timestamp when the comment was created
+    UserRef:
+      type: object
+      description: A brief reference to a Spiceworks user
+      properties:
+        id:
+          type: integer
+          description: Unique user identifier
+        first_name:
+          type: string
+          description: User first name
+        last_name:
+          type: string
+          description: User last name
+        email:
+          type: string
+          format: email
+          description: User email address
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
   securitySchemes:
     oauth2:
       type: oauth2

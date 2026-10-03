@@ -97,18 +97,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          description: Error message
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
     DeviceDetail:
       allOf:
       - $ref: '#/components/schemas/Device'
@@ -182,6 +170,18 @@ components:
           type: string
           format: date-time
           description: Timestamp when the device was last detected on the network
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
     PaginationMeta:
       type: object
       description: Pagination metadata for list responses

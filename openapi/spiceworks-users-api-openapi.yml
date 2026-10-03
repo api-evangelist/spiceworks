@@ -88,34 +88,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          description: Error message
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
-    PaginationMeta:
-      type: object
-      description: Pagination metadata for list responses
-      properties:
-        current_page:
-          type: integer
-          description: Current page number
-        total_pages:
-          type: integer
-          description: Total number of pages
-        total_count:
-          type: integer
-          description: Total number of items
-        per_page:
-          type: integer
-          description: Items per page
     User:
       type: object
       description: A Spiceworks platform user or technician
@@ -150,6 +122,34 @@ components:
           type: string
           format: uri
           description: URL to the user avatar image
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses
+      properties:
+        current_page:
+          type: integer
+          description: Current page number
+        total_pages:
+          type: integer
+          description: Total number of pages
+        total_count:
+          type: integer
+          description: Total number of items
+        per_page:
+          type: integer
+          description: Items per page
   securitySchemes:
     oauth2:
       type: oauth2
