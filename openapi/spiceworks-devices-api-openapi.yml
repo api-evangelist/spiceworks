@@ -97,6 +97,22 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses
+      properties:
+        current_page:
+          type: integer
+          description: Current page number
+        total_pages:
+          type: integer
+          description: Total number of pages
+        total_count:
+          type: integer
+          description: Total number of items
+        per_page:
+          type: integer
+          description: Items per page
     DeviceDetail:
       allOf:
       - $ref: '#/components/schemas/Device'
@@ -182,22 +198,6 @@ components:
           items:
             type: string
           description: Additional error details
-    PaginationMeta:
-      type: object
-      description: Pagination metadata for list responses
-      properties:
-        current_page:
-          type: integer
-          description: Current page number
-        total_pages:
-          type: integer
-          description: Total number of pages
-        total_count:
-          type: integer
-          description: Total number of items
-        per_page:
-          type: integer
-          description: Items per page
   securitySchemes:
     oauth2:
       type: oauth2

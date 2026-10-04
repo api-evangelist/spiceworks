@@ -88,6 +88,23 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    UserRef:
+      type: object
+      description: A brief reference to a Spiceworks user
+      properties:
+        id:
+          type: integer
+          description: Unique user identifier
+        first_name:
+          type: string
+          description: User first name
+        last_name:
+          type: string
+          description: User last name
+        email:
+          type: string
+          format: email
+          description: User email address
     CommentCreate:
       type: object
       required:
@@ -119,23 +136,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the comment was created
-    UserRef:
-      type: object
-      description: A brief reference to a Spiceworks user
-      properties:
-        id:
-          type: integer
-          description: Unique user identifier
-        first_name:
-          type: string
-          description: User first name
-        last_name:
-          type: string
-          description: User last name
-        email:
-          type: string
-          format: email
-          description: User email address
     Error:
       type: object
       description: API error response

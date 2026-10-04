@@ -163,61 +163,25 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    TicketCreate:
+    Comment:
       type: object
-      required:
-      - summary
+      description: A comment on a Help Desk ticket
       properties:
-        summary:
-          type: string
-          description: Brief description of the issue
-          maxLength: 255
-        description:
-          type: string
-          description: Detailed description of the issue
-        priority:
-          type: string
-          enum:
-          - low
-          - medium
-          - high
-          - urgent
-          default: medium
-        assignee_id:
+        id:
           type: integer
-          description: ID of the technician to assign the ticket to
-        due_date:
+          description: Unique comment identifier
+        body:
           type: string
-          format: date
-          description: Optional due date for resolution
-    PaginationMeta:
-      type: object
-      description: Pagination metadata for list responses
-      properties:
-        current_page:
-          type: integer
-          description: Current page number
-        total_pages:
-          type: integer
-          description: Total number of pages
-        total_count:
-          type: integer
-          description: Total number of items
-        per_page:
-          type: integer
-          description: Items per page
-    Error:
-      type: object
-      description: API error response
-      properties:
-        error:
+          description: The comment text content
+        is_public:
+          type: boolean
+          description: Whether the comment is visible to the ticket requester (true) or internal to technicians only (false)
+        author:
+          $ref: '#/components/schemas/UserRef'
+        created_at:
           type: string
-          description: Error message
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
+          format: date-time
+          description: Timestamp when the comment was created
     Ticket:
       type: object
       description: A Spiceworks Help Desk support ticket
@@ -259,59 +223,34 @@ components:
           type: string
           format: date
           description: Optional due date for the ticket
-    Comment:
+    Error:
       type: object
-      description: A comment on a Help Desk ticket
+      description: API error response
       properties:
-        id:
-          type: integer
-          description: Unique comment identifier
-        body:
+        error:
           type: string
-          description: The comment text content
-        is_public:
-          type: boolean
-          description: Whether the comment is visible to the ticket requester (true) or internal to technicians only (false)
-        author:
-          $ref: '#/components/schemas/UserRef'
-        created_at:
-          type: string
-          format: date-time
-          description: Timestamp when the comment was created
-    UserRef:
-      type: object
-      description: A brief reference to a Spiceworks user
-      properties:
-        id:
-          type: integer
-          description: Unique user identifier
-        first_name:
-          type: string
-          description: User first name
-        last_name:
-          type: string
-          description: User last name
-        email:
-          type: string
-          format: email
-          description: User email address
-    TicketDetail:
-      allOf:
-      - $ref: '#/components/schemas/Ticket'
-      - type: object
-        properties:
-          description:
+          description: Error message
+        details:
+          type: array
+          items:
             type: string
-            description: Full description of the ticket issue
-          comments:
-            type: array
-            items:
-              $ref: '#/components/schemas/Comment'
-          tags:
-            type: array
-            items:
-              type: string
-            description: Tags associated with the ticket
+          description: Additional error details
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses
+      properties:
+        current_page:
+          type: integer
+          description: Current page number
+        total_pages:
+          type: integer
+          description: Total number of pages
+        total_count:
+          type: integer
+          description: Total number of items
+        per_page:
+          type: integer
+          description: Items per page
     TicketUpdate:
       type: object
       properties:
@@ -338,6 +277,67 @@ components:
         assignee_id:
           type: integer
           description: ID of the technician to assign the ticket to
+    TicketDetail:
+      allOf:
+      - $ref: '#/components/schemas/Ticket'
+      - type: object
+        properties:
+          description:
+            type: string
+            description: Full description of the ticket issue
+          comments:
+            type: array
+            items:
+              $ref: '#/components/schemas/Comment'
+          tags:
+            type: array
+            items:
+              type: string
+            description: Tags associated with the ticket
+    UserRef:
+      type: object
+      description: A brief reference to a Spiceworks user
+      properties:
+        id:
+          type: integer
+          description: Unique user identifier
+        first_name:
+          type: string
+          description: User first name
+        last_name:
+          type: string
+          description: User last name
+        email:
+          type: string
+          format: email
+          description: User email address
+    TicketCreate:
+      type: object
+      required:
+      - summary
+      properties:
+        summary:
+          type: string
+          description: Brief description of the issue
+          maxLength: 255
+        description:
+          type: string
+          description: Detailed description of the issue
+        priority:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - urgent
+          default: medium
+        assignee_id:
+          type: integer
+          description: ID of the technician to assign the ticket to
+        due_date:
+          type: string
+          format: date
+          description: Optional due date for resolution
   securitySchemes:
     oauth2:
       type: oauth2
