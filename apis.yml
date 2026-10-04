@@ -139,6 +139,9 @@ created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.23'
 common:
+  - type: CapabilityMap
+    url: capabilities/spiceworks-capability-edges.yml
+    name: Spiceworks Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/spiceworks/overview
   - type: AgenticAccess
