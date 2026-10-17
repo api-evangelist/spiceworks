@@ -163,6 +163,48 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    TicketUpdate:
+      type: object
+      properties:
+        summary:
+          type: string
+          description: Updated brief description
+          maxLength: 255
+        description:
+          type: string
+          description: Updated detailed description
+        status:
+          type: string
+          enum:
+          - open
+          - in_progress
+          - closed
+        priority:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - urgent
+        assignee_id:
+          type: integer
+          description: ID of the technician to assign the ticket to
+    PaginationMeta:
+      type: object
+      description: Pagination metadata for list responses
+      properties:
+        current_page:
+          type: integer
+          description: Current page number
+        total_pages:
+          type: integer
+          description: Total number of pages
+        total_count:
+          type: integer
+          description: Total number of items
+        per_page:
+          type: integer
+          description: Items per page
     Comment:
       type: object
       description: A comment on a Help Desk ticket
@@ -182,6 +224,35 @@ components:
           type: string
           format: date-time
           description: Timestamp when the comment was created
+    TicketDetail:
+      allOf:
+      - $ref: '#/components/schemas/Ticket'
+      - type: object
+        properties:
+          description:
+            type: string
+            description: Full description of the ticket issue
+          comments:
+            type: array
+            items:
+              $ref: '#/components/schemas/Comment'
+          tags:
+            type: array
+            items:
+              type: string
+            description: Tags associated with the ticket
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
     Ticket:
       type: object
       description: A Spiceworks Help Desk support ticket
@@ -223,77 +294,6 @@ components:
           type: string
           format: date
           description: Optional due date for the ticket
-    Error:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          description: Error message
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
-    PaginationMeta:
-      type: object
-      description: Pagination metadata for list responses
-      properties:
-        current_page:
-          type: integer
-          description: Current page number
-        total_pages:
-          type: integer
-          description: Total number of pages
-        total_count:
-          type: integer
-          description: Total number of items
-        per_page:
-          type: integer
-          description: Items per page
-    TicketUpdate:
-      type: object
-      properties:
-        summary:
-          type: string
-          description: Updated brief description
-          maxLength: 255
-        description:
-          type: string
-          description: Updated detailed description
-        status:
-          type: string
-          enum:
-          - open
-          - in_progress
-          - closed
-        priority:
-          type: string
-          enum:
-          - low
-          - medium
-          - high
-          - urgent
-        assignee_id:
-          type: integer
-          description: ID of the technician to assign the ticket to
-    TicketDetail:
-      allOf:
-      - $ref: '#/components/schemas/Ticket'
-      - type: object
-        properties:
-          description:
-            type: string
-            description: Full description of the ticket issue
-          comments:
-            type: array
-            items:
-              $ref: '#/components/schemas/Comment'
-          tags:
-            type: array
-            items:
-              type: string
-            description: Tags associated with the ticket
     UserRef:
       type: object
       description: A brief reference to a Spiceworks user

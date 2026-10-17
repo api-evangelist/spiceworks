@@ -104,18 +104,6 @@ components:
         per_page:
           type: integer
           description: Items per page
-    Error:
-      type: object
-      description: API error response
-      properties:
-        error:
-          type: string
-          description: Error message
-        details:
-          type: array
-          items:
-            type: string
-          description: Additional error details
     User:
       type: object
       description: A Spiceworks platform user or technician
@@ -150,6 +138,18 @@ components:
           type: string
           format: uri
           description: URL to the user avatar image
+    Error:
+      type: object
+      description: API error response
+      properties:
+        error:
+          type: string
+          description: Error message
+        details:
+          type: array
+          items:
+            type: string
+          description: Additional error details
   securitySchemes:
     oauth2:
       type: oauth2
