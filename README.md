@@ -1,4 +1,4 @@
-# Spiceworks (spiceworks)
+# Spiceworks
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,74 +66,175 @@
 
 Spiceworks is an online community and marketplace where IT professionals can find advice, manage their networks, and discover and purchase IT products and services. The Spiceworks Cloud Apps API enables developers to build integrated applications within the Spiceworks platform, accessing Help Desk ticketing, device inventory, and user management data through a JavaScript SDK with OAuth-based authentication.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/spiceworks/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/spiceworks/refs/heads/main/apis.yml)
+**Areas:** Community · Enterprise IT · IT Management
 
-## Scope
+## Spiceworks on APIs.io
 
-- **Type:** Index
-- **Access:** 3rd-Party
+Everything profiled for Spiceworks is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/spiceworks/](https://apis.io/providers/spiceworks/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Community
-- Enterprise IT
-- IT Management
+- [Spiceworks Comments API](https://apis.io/apis/spiceworks/spiceworks-comments-api/) — Ticket comment operations for adding and retrieving comments on Help Desk support tickets
+- [Spiceworks Devices API](https://apis.io/apis/spiceworks/spiceworks-devices-api/) — Device inventory operations for accessing information about managed IT devices including computers, servers, and network equipment
+- [Spiceworks Tickets API](https://apis.io/apis/spiceworks/spiceworks-tickets-api/) — Help Desk ticket management operations for creating, reading, updating, and listing support tickets within the Spiceworks IT management platform
+- [Spiceworks Users API](https://apis.io/apis/spiceworks/spiceworks-users-api/) — User management operations for accessing Spiceworks user and technician profiles
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Spiceworks Cloud Apps API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Spiceworks Cloud Apps API provides a JavaScript SDK for building integrated apps within the Spiceworks platform, with access to Help Desk ticketing data, device inventory, and user information. It allows developers to create custom apps embedded in the Spiceworks interface with access to IT management data.
+- [Spiceworks Agentic Access](https://apis.io/agentic-access/spiceworks/spiceworks-agentic-access/)
 
-- **Human URL:** [https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/](https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/)
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Cloud Apps
-- Community
-- Help Desk
-- IT Management
-- Ticketing
+- [Spiceworks Inventory Device](https://apis.io/schemas/spiceworks/spiceworks-device/)
+- [Spiceworks Help Desk Ticket](https://apis.io/schemas/spiceworks/spiceworks-ticket/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/)
-- [Authentication](https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/authentication/)
-- [Documentation](https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/reference/helpdesk/)
-- [S D Ks](https://github.com/spiceworks/spiceworks-js-sdk)
-- [Examples](https://github.com/spiceworks/spiceworks-js-sdk/tree/master/examples/hello-world)
-- [OpenAPI](openapi/spiceworks-cloud-apps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/spiceworks-cloud-apps.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spiceworks-cloud-apps.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Spectral Rules](rules/spiceworks-rules.yml)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Spiceworks Ticket Structure](https://apis.io/json-structure/spiceworks/spiceworks-ticket-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Spiceworks Context](https://apis.io/jsonld/spiceworks/spiceworks-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Spiceworks Vocabulary](https://apis.io/vocabularies/spiceworks/spiceworks-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Spiceworks Get Device Example](https://apis.io/examples/spiceworks/spiceworks-get-device-example/)
+- [Spiceworks List Tickets Example](https://apis.io/examples/spiceworks/spiceworks-list-tickets-example/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Spiceworks Cloud Apps API](https://apis.io/collections/spiceworks/open-spiceworks-cloud-apps/)
+- [Spiceworks Cloud Apps Comments API](https://apis.io/collections/spiceworks/open-spiceworks-comments-api/)
+- [Spiceworks Cloud Apps Comments Devices API](https://apis.io/collections/spiceworks/open-spiceworks-devices-api/)
+- [Spiceworks Cloud Apps Comments Tickets API](https://apis.io/collections/spiceworks/open-spiceworks-tickets-api/)
+- [Spiceworks Cloud Apps Comments Users API](https://apis.io/collections/spiceworks/open-spiceworks-users-api/)
+- [Spiceworks Cloud Apps Comments API](https://apis.io/collections/spiceworks/postman-spiceworks-comments-api/)
+- [Spiceworks Cloud Apps Comments Devices API](https://apis.io/collections/spiceworks/postman-spiceworks-devices-api/)
+- [Spiceworks Cloud Apps Comments Tickets API](https://apis.io/collections/spiceworks/postman-spiceworks-tickets-api/)
+- [Spiceworks Cloud Apps Comments Users API](https://apis.io/collections/spiceworks/postman-spiceworks-users-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Spiceworks — jsonschema rules](https://apis.io/rules/spiceworks/spiceworks-jsonschema-spectral-rules/)
+- [Spiceworks API Rules](https://apis.io/rules/spiceworks/spiceworks-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Spiceworks Authentication](https://apis.io/security/spiceworks/spiceworks-authentication/)
+- [Spiceworks Domain Security](https://apis.io/security/spiceworks/spiceworks-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Spiceworks Scopes](https://apis.io/scopes/spiceworks/spiceworks-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Spiceworks Plans Pricing](https://apis.io/plans/spiceworks/spiceworks-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Spiceworks Rate Limits](https://apis.io/rate-limits/spiceworks/spiceworks-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Spiceworks Finops](https://apis.io/finops/spiceworks/spiceworks-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://community.spiceworks.com/)
-- [Sign Up](https://community.spiceworks.com/register)
-- [Login](https://community.spiceworks.com/login)
-- [Portal](https://spiceworks.github.io/developers.spiceworks.com/)
 - [Documentation](https://spiceworks.github.io/developers.spiceworks.com/documentation/cloud-apps/)
-- [S D Ks](https://github.com/spiceworks/spiceworks-js-sdk)
 - [Support](https://community.spiceworks.com/help)
-- [Terms of Service](https://community.spiceworks.com/legal/terms)
-- [Privacy Policy](https://community.spiceworks.com/legal/privacy)
 - [Blog](https://community.spiceworks.com/blog)
-- [X (Twitter)](https://twitter.com/spiceworks)
-- [LinkedIn](https://www.linkedin.com/company/spiceworks)
-- [Facebook](https://www.facebook.com/Spiceworks)
-- [YouTube](https://www.youtube.com/spiceworks)
-- [Git Hub](https://github.com/spiceworks)
-- [OpenAPI](openapi/spiceworks-cloud-apps-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Spectral Rules](rules/spiceworks-rules.yml)
-- [Vocabulary](vocabulary/spiceworks-vocabulary.yml)
+- [Terms of service](https://community.spiceworks.com/legal/terms)
+- [Privacy policy](https://community.spiceworks.com/legal/privacy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 42.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 48.2 |
+| Contract quality | 60.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 36.9 |
+| Access clarity | 42.1 |
+
+**Agent readiness 26.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/spiceworks/](https://apis.io/providers/spiceworks/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Spiceworks: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/spiceworks/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
